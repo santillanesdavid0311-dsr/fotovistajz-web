@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada — Fotovista JCCastillo</title>
+
+  <!-- Favicon / ícono del sitio (ver bloque igual en index.html para detalles) -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Estilos exclusivos de esta página, para no tener que tocar styles.css solo por esto -->
+  <style>
+    .error-page{
+      min-height:100vh; display:flex; flex-direction:column; align-items:center;
+      justify-content:center; text-align:center; padding:40px 24px;
+    }
+    .error-page .code{font-family:'Source Serif 4',serif; font-size:clamp(60px,14vw,120px); color:var(--safelight); line-height:1;}
+    .error-page h1{font-size:clamp(24px,4vw,32px); margin:12px 0 16px;}
+    .error-page p{font-size:16px; opacity:.75; max-width:420px; margin-bottom:32px; line-height:1.6;}
+    .error-page .btn-row{display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+  </style>
+</head>
+
+<body>
+  <div class="error-page">
+    <span class="code">404</span>
+    <h1>No encontramos esta página.</h1>
+    <p>Puede que el enlace esté mal escrito o que la página ya no exista. Regresa al inicio y desde ahí
+      encuentras lo que buscas.</p>
+    <div class="btn-row">
+      <a href="index.html" class="btn btn-primary">Ir al inicio</a>
+      <a href="index.html#contacto" class="btn btn-ghost">Contáctanos</a>
+    </div>
+  </div>
+</body>
+
+</html>

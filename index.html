@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotovista JCCastillo — Laboratorio Fotográfico en Juárez</title>
+  <meta name="description"
+    content="Laboratorio fotográfico en Los Nogales, Juárez. Impresión fotográfica, fotos montadas en tablilla, cuadro, bastidor y fotos ID (credencial, pasaporte, diploma, título). Pide en línea por WhatsApp o correo.">
+  <link rel="canonical" href="https://fotovistajz.com/">
+
+  <!-- Favicon / ícono del sitio. El logo original es un lockup de letras + ícono
+       entrelazados, así que se recortó a mano solo el remolino de color (el "swirl"
+       del pincel) para que se vea reconocible incluso a 16px en la pestaña del
+       navegador. Si algún día rehacen el logo con un ícono separado, basta con
+       regenerar estos archivos en assets/ (favicon.ico, favicon-16/32/48/192/512,
+       apple-touch-icon.png) con las mismas medidas. -->
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+
+  <!-- Vista previa cuando comparten el link en WhatsApp, Facebook, etc. Usa una
+       imagen aparte (og-image.jpg, 1200x630 con fondo sólido) en vez del logo con
+       fondo transparente, porque el logo transparente se ve mal en varios temas
+       de WhatsApp/Facebook (se funde con el fondo oscuro o claro). -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fotovista JCCastillo">
+  <meta property="og:title" content="Fotovista JCCastillo — Laboratorio Fotográfico en Juárez">
+  <meta property="og:description"
+    content="Impresión fotográfica, cuadro, bastidor y fotos ID en Los Nogales, Juárez. Pide en línea por WhatsApp o correo.">
+  <meta property="og:image" content="https://fotovistajz.com/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://fotovistajz.com/">
+  <meta property="og:locale" content="es_MX">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fotovista JCCastillo — Laboratorio Fotográfico en Juárez">
+  <meta name="twitter:description"
+    content="Impresión fotográfica, cuadro, bastidor y fotos ID en Los Nogales, Juárez. Pide en línea por WhatsApp o correo.">
+  <meta name="twitter:image" content="https://fotovistajz.com/assets/og-image.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Solo 2 fuentes en todo el sitio: Playpen Sans (títulos h1/h2/h3) y
+       Source Serif 4 (todo lo demás: texto, botones, menú, etiquetas). -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Datos estructurados para Google (JSON-LD). Usa los MISMOS datos que su
+       ficha real de Google Business — nombre, dirección, teléfono y horario
+       deben coincidir exactamente en los dos lugares, si no Google desconfía. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Fotovista JCCastillo",
+    "image": "https://fotovistajz.com/assets/logo.png",
+    "url": "https://fotovistajz.com/",
+    "telephone": "+52 656 550 8492",
+    "priceRange": "$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "C. 21 de Marzo 4930, Los Nogales",
+      "addressLocality": "Juárez",
+      "addressRegion": "Chihuahua",
+      "postalCode": "32350",
+      "addressCountry": "MX"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 31.7218404,
+      "longitude": -106.4437917
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "09:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "09:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "09:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "20:00" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61593201084522"
+    ]
+  }
+  </script>
+
+  <!-- ============ GOOGLE ANALYTICS (GA4) ============
+       Listo para activar en cuanto David tenga su Measurement ID (algo como
+       "G-XXXXXXXXXX", se obtiene gratis en analytics.google.com creando una
+       propiedad para fotovistajz.com). Mientras no se reemplace el ID de abajo,
+       este bloque se queda comentado para no mandar datos falsos a una
+       propiedad que no existe.
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+</head>
+
+<body>
+
+  <div id="safelight-overlay"></div>
+
+  <!-- ============ SITE HEADER ============ -->
+  <header>
+    <div class="wrap">
+      <div class="logo" id="siteLogo">
+        <img src="assets/logo.webp" alt="Fotovista JCCastillo" class="logo-img" width="2073" height="687">
+        <span class="logo-tagline">Tu mejor impresión</span>
+      </div>
+      <nav id="nav">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#" id="navProductos">Productos</a>
+        <a href="#galeria">Galería</a>
+        <a href="#resenas">Reseñas</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero site-section">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">LABORATORIO FOTOGRAFICO EN CD. JUAREZ</span>
+        <h1>Tus recuerdos, revelados con color.</h1>
+        <p>Impresión fotográfica, fotos para documentos diversos, restructuración fotográfica, impresión de gran
+          formato y enmarcado, son varios de nuestros productos.</p>
+        <div class="btn-row">
+          <a href="#" class="btn btn-primary" id="heroCatalogoBtn">Ver catálogo</a>
+        </div>
+      </div>
+      <!-- Montón de fotos regadas, cada una con su medida real. Tienen animación
+           (se mecen solas) y se pueden arrastrar con el mouse o el dedo — ver
+           el bloque "PHOTO STACK" en script.js para la parte de arrastrar. -->
+      <div class="photo-stack" id="photoStack">
+        <div class="photo-card pc-1" style="--rot:-8deg;">
+          <img src="assets/fotos/hero-1.webp" alt="Trabajo de Fotovista, impresión 16×20" width="600" height="800">
+          <span class="pc-tag">16×20</span>
+        </div>
+        <div class="photo-card pc-2" style="--rot:6deg;">
+          <img src="assets/fotos/hero-2.webp" alt="Trabajo de Fotovista, impresión 5×7" width="600" height="800">
+          <span class="pc-tag">5×7</span>
+        </div>
+        <div class="photo-card pc-3" style="--rot:-4deg;">
+          <img src="assets/fotos/hero-3.webp" alt="Trabajo de Fotovista, impresión 4×6" width="600" height="800">
+          <span class="pc-tag">4×6</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NOSOTROS ============ -->
+  <section class="about site-section dark-section" id="nosotros">
+    <div class="wrap about-grid">
+      <img src="assets/fotos/srcastillo.webp" alt="Interior del laboratorio Fotovista" width="989" height="1420">
+      <div>
+        <span class="sec-num">QUIÉNES SOMOS</span>
+        <h2 style="margin-bottom:20px;">Un laboratorio con equipo profesional.</h2>
+        <p>Fotovista JCCastillo imprime, monta, enmarca y toma fotos para documentos, en nuestro local de Ciudad Juárez.
+        </p>
+        <p>Desde 1965 damos servicios de fotográfia y contamos con equipo profesional.</p>
+        <!-- Aquí falta la historia real del negocio contada por la jefa: cuánto tiempo llevan,
+             qué los hace diferentes, etc. En cuanto me la pases la agrego en un segundo párrafo. -->
+        <div class="stat-row">
+          <div class="stat"><b>5.0★</b><span>Calificación en Google</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section id="servicios" class="site-section">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">LO QUE HACEMOS</span>
+        <h2>Servicios</h2>
+        <p>Esto es lo que sí ofrecemos hoy — puedes pedirlo directo desde el catálogo.</p>
+      </div>
+      <div class="services-grid">
+        <div class="card svc-blue">
+          <span class="card-num">01</span>
+          <h3>Impresión fotográfica</h3>
+          <p>Fotos sueltas o montadas en tablilla, en tamaños de 4×6 hasta 30×40.</p>
+        </div>
+        <div class="card svc-pink">
+          <span class="card-num">02</span>
+          <h3>Cuadro y bastidor</h3>
+          <p>Tu foto con marco (delgado o grueso) o en bastidor, lista para colgar.</p>
+        </div>
+        <div class="card svc-amber">
+          <span class="card-num">03</span>
+          <h3>Fotos ID</h3>
+          <p>Credencial, pasaporte, diploma, título y más — la sesión se hace aquí en el local.</p>
+        </div>
+        <div class="card svc-pink">
+          <span class="card-num">04</span>
+          <h3>Restauración de fotografías</h3>
+          <p>Restaura con nosotros tus fotos antiguas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTOS NUEVOS (ahora son accesos directos) ============ 
+  <section class="products site-section" id="productos">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">RECIÉN LLEGADO</span>
+        <h2>Productos nuevos</h2>
+        <p>Presiona cualquier producto para armar tu pedido.</p>
+      </div>
+      <div class="prod-grid">
+        <button class="prod-card cat-c-pink" onclick="openProductShortcut('cuadro')"
+          aria-label="Pedir cuadro fotográfico">
+          <img src="assets/fotos/producto-cuadro.webp" alt="Cuadro fotográfico" width="900" height="900">
+          <div class="prod-info">
+            <h3>Cuadro fotográfico</h3>
+            <span>Desde $90</span>
+            <em>Pedir →</em>
+          </div>
+        </button>
+        <button class="prod-card cat-c-amber" onclick="openProductShortcut('cuadro')"
+          aria-label="Pedir foto en bastidor">
+          <img src="assets/fotos/producto-bastidor.webp" alt="Foto en bastidor" width="900" height="900">
+          <div class="prod-info">
+            <h3>Foto en bastidor</h3>
+            <span>Desde $180</span>
+            <em>Pedir →</em>
+          </div>
+        </button>
+        <button class="prod-card cat-c-blue" onclick="openProductShortcut('impresiones')"
+          aria-label="Pedir foto montada en tablilla">
+          <img src="assets/fotos/producto-montada.webp" alt="Foto montada en tablilla">
+          <div class="prod-info">
+            <h3>Foto montada en tablilla</h3>
+            <span>Desde $150</span>
+            <em>Pedir →</em>
+          </div>
+        </button>
+
+      </div>
+    </div>
+  </section>
+-->
+  <!-- ============ GALERÍA ============ -->
+  <section id="galeria" class="site-section">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">NUESTRO TRABAJO</span>
+        <h2>Galería</h2>
+      </div>
+      <div class="gallery-grid">
+        <img src="assets/fotos/1.webp" alt="Trabajo Fotovista 1" width="3840" height="2160">
+        <img src="assets/fotos/2.webp" alt="Trabajo Fotovista 2" width="1600" height="1200">
+        <img src="assets/fotos/3.webp" alt="Trabajo Fotovista 3" width="1200" height="1600">
+        <img src="assets/fotos/4.webp" alt="Trabajo Fotovista 4" width="742" height="1118">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEÑAS ============ -->
+  <section class="reviews site-section dark-section" id="resenas">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">CLIENTES</span>
+        <h2>Opiniones</h2>
+      </div>
+      <!-- GOOGLE-REVIEWS-WIDGET: si más adelante conectan un widget (Elfsight, SociableKit, etc.)
+           conectado al Place ID de Fotovista, pegar aquí el código que dé el proveedor y borrar
+           el .reviews-grid de abajo. -->
+      <div class="reviews-grid reviews-grid-1">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"It's very nice."</p>
+          <div class="review-name">— Reseña real en Google</div>
+        </div>
+      </div>
+      <div class="google-badge">
+        <div class="gscore">5.0</div>
+        <div>
+          <b style="font-size:15px;">Google Reviews</b>
+          <small>1 reseña verificada — <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=Fotovista&amp;query_place_id=ChIJgVFO0Zlf54YR9XI2x5h827Y"
+              target="_blank" rel="noopener">ver en Google Maps</a></small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <!-- Usa <details>/<summary> nativo del navegador: no necesita JavaScript para
+       abrir/cerrar. Para agregar una pregunta nueva, copia un bloque <details> completo. -->
+  <section id="faq" class="site-section">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-num">DUDAS COMUNES</span>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Cómo hago un pedido?</summary>
+          <p>Eliges tu producto en el catálogo del sitio, confirmas y se abre WhatsApp o tu correo con el
+            resumen. Nos mandas tus fotos ahí mismo, te confirmamos y te compartimos el link de pago.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué métodos de pago aceptan?</summary>
+          <p>Pago por Mercado Pago: te mandamos un link de pago después de confirmar tu pedido.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Cuánto tardan en tener listo mi pedido?</summary>
+          <p>Los pedidos de impresiones, cuadro y bastidor quedan listos el mismo día.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Hacen envíos a domicilio?</summary>
+          <p>No por ahora — todos los pedidos se recogen en el local, en C. 21 de Marzo 4930, Los Nogales,
+            Juárez.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Las fotos ID (credencial, pasaporte, etc.) se toman ahí mismo?</summary>
+          <p>Sí, esas se toman en el local — no son fotos que nos mandes tú. Agenda tu tipo de foto desde el
+            catálogo y te confirmamos por WhatsApp o correo.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Tienen descuento para fotógrafos?</summary>
+          <p>Sí, si tienes membresía de fotógrafo puedes aplicar tu código en el paso de confirmar tu pedido
+            de Impresiones.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto" class="site-section">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="sec-num">VISÍTANOS</span>
+        <h2 style="font-size:34px; margin-bottom:24px;">Contacto</h2>
+        <div class="info-row">
+          <div class="ico">📍</div>
+          <div><b>Dirección</b><span>C. 21 de Marzo 4930, Los Nogales, 32350 Juárez, Chih.</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ico">🕒</div>
+          <div><b>Horario</b><span>
+              Lun a Mié: 9am – 7pm · Jue: 9am – 8pm<br>
+              Vie y Sáb: 9am – 10pm · Dom: 10am – 8pm
+            </span></div>
+        </div>
+        <div class="info-row">
+          <div class="ico">📞</div>
+          <div><b>Teléfono / WhatsApp</b><span>656 550 8492</span></div>
+        </div>
+        <!-- Mapa incrustado sin necesidad de API key de Google. Antes usaba el texto
+             de la dirección ("q=C. 21 de Marzo..."), pero el buscador de Google a
+             veces no lo ubica bien y termina mostrando un mapa genérico sin el pin.
+             Ahora usa directamente las coordenadas exactas (las mismas del JSON-LD
+             de arriba en el <head>) con zoom fijo, que sí cae siempre en el punto
+             correcto. Si alguna vez cambian de dirección, hay que actualizar TANTO
+             estas coordenadas como las del JSON-LD arriba. -->
+        <iframe class="map-embed" loading="lazy"
+          src="https://www.google.com/maps?q=31.7218404,-106.4437917(Fotovista+JCCastillo)&z=17&output=embed"
+          title="Ubicación de Fotovista JCCastillo"></iframe>
+      </div>
+      <form id="contactForm">
+        <input type="text" id="contactName" placeholder="Tu nombre" required>
+        <input type="email" id="contactEmail" placeholder="Tu correo" required>
+        <textarea id="contactMessage" placeholder="Cuéntanos qué necesitas..." required></textarea>
+        <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Enviar mensaje</button>
+
+        <!-- Respaldo para cuando el "mailto:" no abre nada (muy común en celular,
+             porque no todos tienen una app de correo configurada). Se muestra
+             siempre después de enviar, con el mensaje listo para copiar o
+             mandar por WhatsApp, para no perder el contacto si el correo no
+             abrió. Ver "CONTACT FORM FALLBACK" en script.js. -->
+        <div id="contactFallback" class="contact-fallback" hidden>
+          <p><b>¿No se abrió tu correo?</b> No hay problema — aquí está tu mensaje listo para copiar o mandarlo por
+            WhatsApp.</p>
+          <pre id="contactFallbackText" class="contact-fallback-text"></pre>
+          <div class="contact-fallback-actions">
+            <button type="button" id="contactFallbackCopy" class="btn btn-ghost">📋 Copiar mensaje</button>
+            <a id="contactFallbackWhatsapp" href="#" target="_blank" rel="noopener" class="btn btn-primary">📱 Mandar
+              por WhatsApp</a>
+            <a id="contactFallbackMailto" href="#" class="btn btn-ghost">✉️ Reintentar por correo</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-section">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><img src="assets/logo.webp" alt="Fotovista JCCastillo" class="logo-img" width="2073"
+            height="687"></div>
+        <!-- Si más adelante tienen Instagram o TikTok, agrega otro <a class="social-link">
+             igual al de abajo, con su propio emoji o SVG. -->
+        <div class="social-row">
+          <a class="social-link" href="https://www.facebook.com/profile.php?id=61593201084522" target="_blank"
+            rel="noopener" aria-label="Facebook de Fotovista">
+            <!-- Ícono de Facebook como SVG en vez de emoji (📘), porque en varios
+                 sistemas/navegadores sin fuente de emoji a color el emoji se ve
+                 como un cuadrito azul en vez del ícono — el SVG siempre se ve igual. -->
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+              <path
+                d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <b>Enlaces</b>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#" id="footerProductos">Productos</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <b>Contacto</b>
+        <span>C. 21 de Marzo 4930, Los Nogales, Juárez</span>
+        <span>656 550 8492</span>
+        <span>jcc.fotovista@gmail.com</span>
+      </div>
+      <div class="footer-col">
+        <b>Legal</b>
+        <a href="privacidad.html">Aviso de Privacidad</a>
+        <a href="terminos.html">Términos y Condiciones</a>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <p>© <span id="footerYear"></span> Fotovista JCCastillo. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ============ CATALOG / CONFIGURATOR OVERLAY ============ -->
+  <div id="catalogOverlay">
+
+    <main class="cfg-wrap">
+
+      <!-- CATALOG ROOT -->
+      <section class="view active" id="view-catalog">
+        <span class="sec-num">CATÁLOGO</span>
+        <h2 class="cfg-title">¿Qué quieres pedir hoy?</h2>
+        <p class="subtitle">Elige una categoría, arma tu pedido y mándalo por WhatsApp o correo — ahí mismo
+          nos mandas tus fotos y te confirmamos.</p>
+        <div class="cat-grid">
+          <div class="cat-card cat-c-blue" onclick="startImpresiones()">
+            <span class="cat-icon">🖨️</span>
+            <h3>Impresiones</h3>
+            <p>Fotos sueltas o montadas en tablilla. Elige tamaño y cantidad.</p>
+            <span class="cat-tag">PEDIR →</span>
+          </div>
+          <div class="cat-card cat-c-pink" onclick="startCuadro()">
+            <span class="cat-icon">🖼️</span>
+            <h3>Cuadro</h3>
+            <p>Foto con marco (delgado o grueso) o en bastidor, en varios tamaños.</p>
+            <span class="cat-tag">PEDIR →</span>
+            <button type="button" class="cat-preview-link" onclick="event.stopPropagation(); startWallPreview();">👀
+              Pruébalo en tu pared</button>
+          </div>
+          <div class="cat-card cat-c-amber" onclick="startPostumas()">
+            <span class="cat-icon">🕯️</span>
+            <h3>Homenaje Póstumo</h3>
+            <p>Fotográfia para funerales.</p>
+            <span class="cat-tag">PEDIR →</span>
+          </div>
+          <div class="cat-card cat-c-yellow" onclick="startIdPhoto()">
+            <span class="cat-icon">🪪</span>
+            <h3>Fotos ID</h3>
+            <p>Credencial, pasaporte, diploma, título y más. Se toman en el local.</p>
+            <span class="cat-tag">AGENDAR →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMPRESIONES CONFIGURATOR -->
+      <section class="view" id="view-impresiones">
+        <span class="sec-num">IMPRESIONES</span>
+        <h2 class="cfg-title">Manda tus fotos a imprimir</h2>
+        <p class="subtitle">Cuatro pasos: acabado, tamaño, cantidad y confirmar.</p>
+
+        <div class="steps">
+          <div class="step" data-step="1"><span class="stepnum">1</span><span class="step-label">Acabado</span></div>
+          <div class="step" data-step="2"><span class="stepnum">2</span><span class="step-label">Tamaño</span></div>
+          <div class="step" data-step="3"><span class="stepnum">3</span><span class="step-label">Cantidad</span></div>
+          <div class="step" data-step="4"><span class="stepnum">4</span><span class="step-label">Confirmar</span></div>
+        </div>
+
+        <div class="fstep" data-istep="1">
+          <div class="opt-grid opt-grid-2" id="impAcabadoGrid"></div>
+        </div>
+
+        <div class="fstep" data-istep="2" style="display:none;">
+          <div class="opt-grid" id="impSizeGrid"></div>
+        </div>
+
+        <div class="fstep" data-istep="3" style="display:none;">
+          <div class="qty-stepper" id="impQtyStepper"></div>
+        </div>
+
+        <div class="fstep" data-istep="4" style="display:none;">
+          <div class="review-box" id="impReview"></div>
+          <div class="member-box">
+            <b>¿Tienes código de fotógrafo?</b>
+            <div class="member-row">
+              <input type="text" id="impMemberInput" placeholder="Código">
+              <button type="button" class="btn btn-ghost" onclick="applyImpMemberCode()">Aplicar</button>
+            </div>
+            <div class="member-feedback" id="impMemberFeedback"></div>
+          </div>
+          <div class="channel-row" id="impChannelRow" style="display:none;">
+            <button class="btn btn-primary" onclick="submitImpresiones('whatsapp')">📱 Pedir por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitImpresiones('email')">✉️ Pedir por correo</button>
+          </div>
+        </div>
+
+        <div class="nav-row" id="impNavRow">
+          <button class="btn btn-ghost" onclick="impresionesBack()">← Atrás</button>
+          <button class="btn btn-primary" id="impNextBtn" onclick="impresionesNext()" disabled>Continuar</button>
+        </div>
+      </section>
+
+      <!-- CUADRO CONFIGURATOR -->
+      <section class="view" id="view-cuadro">
+        <span class="sec-num">CUADRO</span>
+        <h2 class="cfg-title">Pide tu cuadro o bastidor</h2>
+        <p class="subtitle">Tres pasos: elige marco o bastidor, cantidad y confirmar.</p>
+
+        <div class="steps">
+          <div class="step" data-step="1"><span class="stepnum">1</span><span class="step-label">Opción</span></div>
+          <div class="step" data-step="2"><span class="stepnum">2</span><span class="step-label">Cantidad</span></div>
+          <div class="step" data-step="3"><span class="stepnum">3</span><span class="step-label">Confirmar</span></div>
+        </div>
+
+        <div class="fstep" data-istep="1">
+          <div class="opt-grid" id="cuadroOptionGrid"></div>
+        </div>
+
+        <div class="fstep" data-istep="2" style="display:none;">
+          <div class="qty-stepper" id="cuadroQtyStepper"></div>
+        </div>
+
+        <div class="fstep" data-istep="3" style="display:none;">
+          <div class="review-box" id="cuadroReview"></div>
+          <div class="channel-row" id="cuadroChannelRow" style="display:none;">
+            <button class="btn btn-primary" onclick="submitCuadro('whatsapp')">📱 Pedir por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitCuadro('email')">✉️ Pedir por correo</button>
+          </div>
+        </div>
+
+        <div class="nav-row" id="cuadroNavRow">
+          <button class="btn btn-ghost" onclick="cuadroBack()">← Atrás</button>
+          <button class="btn btn-primary" id="cuadroNextBtn" onclick="cuadroNext()" disabled>Continuar</button>
+        </div>
+      </section>
+
+      <!-- PÓSTUMAS — todavía no hay medidas ni precios definidos, así que por
+           ahora es solo un aviso + contacto directo, no un flujo de pedido
+           completo. En cuanto tengan los datos, se arma igual que las demás
+           (avísenme y le hago los pasos de tamaño/cantidad/confirmar). -->
+      <section class="view" id="view-postumas">
+        <span class="sec-num">PÓSTUMAS</span>
+        <h2 class="cfg-title">Fotografía para funerales</h2>
+        <p class="subtitle">Este servicio está por agregarse pero puede, escribirnos directo y te atendemos con gusto.
+        </p>
+
+        <div class="channel-row" style="display:flex;">
+          <button class="btn btn-primary" onclick="submitPostumas('whatsapp')">📱 Preguntar por WhatsApp</button>
+          <button class="btn btn-ghost" onclick="submitPostumas('email')">✉️ Preguntar por correo</button>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn btn-ghost" onclick="goToCatalog()">← Atrás</button>
+        </div>
+      </section>
+
+      <!-- FOTOS ID CONFIGURATOR (se toman en el local, no llevan "manda tus fotos") -->
+      <section class="view" id="view-fotosid">
+        <span class="sec-num">FOTOS ID</span>
+        <h2 class="cfg-title">Agenda tu foto ID</h2>
+        <p class="subtitle">Estas fotos se toman aquí en el local. Dos pasos: elige el tipo y agenda por
+          WhatsApp o correo.</p>
+
+        <div class="steps">
+          <div class="step" data-step="1"><span class="stepnum">1</span><span class="step-label">Tipo</span></div>
+          <div class="step" data-step="2"><span class="stepnum">2</span><span class="step-label">Confirmar</span></div>
+        </div>
+
+        <div class="fstep" data-istep="1">
+          <div class="opt-grid" id="idPhotoGrid"></div>
+        </div>
+
+        <div class="fstep" data-istep="2" style="display:none;">
+          <div class="review-box" id="idPhotoReview"></div>
+          <div class="channel-row" id="idPhotoChannelRow" style="display:none;">
+            <button class="btn btn-primary" onclick="submitIdPhoto('whatsapp')">📱 Agendar por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitIdPhoto('email')">✉️ Agendar por correo</button>
+          </div>
+        </div>
+
+        <div class="nav-row" id="idPhotoNavRow">
+          <button class="btn btn-ghost" onclick="idPhotoBack()">← Atrás</button>
+          <button class="btn btn-primary" id="idPhotoNextBtn" onclick="idPhotoNext()" disabled>Continuar</button>
+        </div>
+      </section>
+
+      <!-- VISTA PREVIA "CÓMO SE VERÍA EN TU PARED"
+               Herramienta de solo diseño/entretenimiento — NO es parte del flujo de
+               pedido. Todo pasa en el navegador del cliente: la foto que sube nunca
+               se manda a ningún lado, solo se muestra ahí mismo con FileReader. -->
+      <section class="view" id="view-preview">
+        <span class="sec-num" id="previewSecNum">VISTA PREVIA</span>
+        <h2 class="cfg-title">Pruébalo antes de pedir</h2>
+        <p class="subtitle">Sube una foto tuya y velo montado en la pared. Tu foto no se guarda ni se
+          manda a ningún lado — solo se muestra aquí en tu pantalla.</p>
+
+        <div class="wall-preview-stage" id="wallPreviewStage">
+          <div class="wall-frame" id="wallFrame">
+            <img id="wallFrameImg" alt="Tu foto en el marco" style="display:none;">
+            <span class="wall-frame-placeholder" id="wallFramePlaceholder">Tu foto aparece aquí</span>
+          </div>
+        </div>
+
+        <!-- Selector de acabado: Cuadro y Bastidor ahora son un solo producto,
+             así que aquí se eligen los 3 estilos posibles. -->
+        <div class="frame-type-row" id="frameTypeRow">
+          <button type="button" class="frame-type-btn active" id="frameTypeDelgadoBtn"
+            onclick="setWallFrameType('delgado')">Marco delgado</button>
+          <button type="button" class="frame-type-btn" id="frameTypeGruesoBtn"
+            onclick="setWallFrameType('grueso')">Marco grueso</button>
+          <button type="button" class="frame-type-btn" id="frameTypeBastidorBtn"
+            onclick="setWallFrameType('bastidor')">Bastidor</button>
+        </div>
+
+        <div class="upload-row">
+          <label class="btn btn-primary" for="wallPreviewInput">📤 Subir mi foto</label>
+          <input type="file" id="wallPreviewInput" accept="image/*" style="display:none;">
+          <span class="upload-hint">JPG o PNG, no se guarda en ningún servidor</span>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn btn-ghost" onclick="goToCatalog()">← Atrás</button>
+          <button class="btn btn-primary" id="wallPreviewOrderBtn" onclick="startCuadro()">Pedir este producto
+            →</button>
+        </div>
+      </section>
+
+      <!-- SUCCESS -->
+      <section class="view" id="view-success">
+        <div class="success-box">
+          <div class="success-icon">✓</div>
+          <h2 class="cfg-title">¡Ya casi!</h2>
+          <p>Se abrió tu pedido <b id="successChannel">por WhatsApp</b> con el resumen de lo que elegiste.
+            Solo falta que mandes tus fotos ahí mismo — en cuanto las tengamos te confirmamos y te
+            mandamos el link de pago.</p>
+          <button class="btn btn-primary" onclick="goToCatalog()">Volver al catálogo</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Botón flotante de WhatsApp: visible en toda la página para preguntas rápidas
+         (se oculta solo mientras el catálogo está abierto, para no estorbar ahí).
+         Ícono de WhatsApp como SVG en vez de emoji (💬), por la misma razón que
+         el de Facebook en el footer: sin fuente de emoji a color, un emoji se
+         puede ver como un cuadrito roto — el SVG siempre se ve igual. -->
+  <a href="#" id="whatsappFloat" class="whatsapp-float" aria-label="Escríbenos por WhatsApp" target="_blank"
+    rel="noopener">
+    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
+      <path
+        d="M17.6 6.32A8.86 8.86 0 0 0 3.05 16.9L2 22l5.25-1.02a8.86 8.86 0 0 0 4.02.97h.01a8.86 8.86 0 0 0 6.32-15.63ZM11.28 20.2h-.01a7.36 7.36 0 0 1-3.75-1.03l-.27-.16-2.78.54.56-2.7-.18-.28a7.36 7.36 0 0 1 11.5-9.1 7.3 7.3 0 0 1 2.17 5.22 7.37 7.37 0 0 1-7.24 7.51Zm4.03-5.5c-.22-.11-1.3-.64-1.5-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.06-.22-.11-.94-.35-1.8-1.1-.66-.6-1.11-1.33-1.24-1.55-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.4-.06-.11-.5-1.2-.68-1.65-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.6.28-.2.22-.79.77-.79 1.87 0 1.1.81 2.16.92 2.31.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.3-.53 1.49-1.05.18-.51.18-.95.13-1.05-.05-.1-.2-.16-.42-.27Z" />
+    </svg>
+  </a>
+
+  <!-- Burbujita de "avísenme de promociones" — chiquita, aparece sola cada
+         cierto tiempo y se puede cerrar con la X. Toda la lógica de cuándo
+         aparece/desaparece está en script.js (busca "PROMO BUBBLE"). -->
+  <div id="promoBubble" class="promo-bubble">
+    <button type="button" id="promoBubbleClose" class="promo-bubble-close" aria-label="Cerrar aviso">×</button>
+    <p>¿Te avisamos cuando haya promociones? 🎉</p>
+    <a href="#" id="promoOptInBtn" class="promo-bubble-btn" target="_blank" rel="noopener">Sí, avísenme</a>
+  </div>
+
+</body>
+
+</html>

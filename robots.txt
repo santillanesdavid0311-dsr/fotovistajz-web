@@ -1,0 +1,5 @@
+# Deja pasar a todos los buscadores por todo el sitio
+User-agent: *
+Allow: /
+
+Sitemap: https://fotovistajz.com/sitemap.xml
