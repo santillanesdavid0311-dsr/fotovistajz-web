@@ -2054,6 +2054,39 @@ body.catalog-mode #catalogOverlay {
 }
 
 /* ==========================================================
+   PÓSTUMAS — nota de diseño + galería de ejemplos
+   ========================================================== */
+
+.postumas-note {
+  font-size: 14px;
+  opacity: .75;
+  line-height: 1.6;
+
+  margin: -14px 0 32px;
+}
+
+.postumas-examples {
+  margin-top: 56px;
+
+  padding-top: 40px;
+
+  border-top: 1px solid rgba(38, 32, 25, .12);
+}
+
+.postumas-examples-title {
+  font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.postumas-examples-empty {
+  font-size: 14px;
+  opacity: .7;
+  line-height: 1.6;
+
+  max-width: 480px;
+}
+
+/* ==========================================================
    SUCCESS
    ========================================================== */
 

@@ -263,7 +263,7 @@
         <h2>Galería</h2>
       </div>
       <div class="gallery-grid">
-        <img src="assets/fotos/1.webp" alt="Trabajo Fotovista 1" width="3840" height="2160">
+        <img src="assets/fotos/1.webp" alt="Trabajo Fotovista 1" width="1920" height="1080">
         <img src="assets/fotos/2.webp" alt="Trabajo Fotovista 2" width="1600" height="1200">
         <img src="assets/fotos/3.webp" alt="Trabajo Fotovista 3" width="1200" height="1600">
         <img src="assets/fotos/4.webp" alt="Trabajo Fotovista 4" width="742" height="1118">
@@ -474,7 +474,7 @@
           <div class="cat-card cat-c-amber" onclick="startPostumas()">
             <span class="cat-icon">🕯️</span>
             <h3>Homenaje Póstumo</h3>
-            <p>Fotográfia para funerales.</p>
+            <p>Esquelas con foto grande, en el tamaño que elijas. El diseño lo vemos contigo por WhatsApp.</p>
             <span class="cat-tag">PEDIR →</span>
           </div>
           <div class="cat-card cat-c-yellow" onclick="startIdPhoto()">
@@ -567,24 +567,65 @@
         </div>
       </section>
 
-      <!-- PÓSTUMAS — todavía no hay medidas ni precios definidos, así que por
-           ahora es solo un aviso + contacto directo, no un flujo de pedido
-           completo. En cuanto tengan los datos, se arma igual que las demás
-           (avísenme y le hago los pasos de tamaño/cantidad/confirmar). -->
+      <!-- PÓSTUMAS (Homenaje Póstumo) — paquete = cantidad de esquelas, y cada
+           paquete se puede pedir con la foto grande en distintos tamaños; el
+           precio depende de esa combinación (ver postumasPackages en
+           script.js). El diseño de la esquela en sí (texto, fotos chicas,
+           estilo) no se elige aquí — se ve directo por WhatsApp/correo una
+           vez que llega el pedido, por eso el paso 3 solo confirma
+           paquete + tamaño y manda el mensaje. -->
       <section class="view" id="view-postumas">
         <span class="sec-num">PÓSTUMAS</span>
-        <h2 class="cfg-title">Fotografía para funerales</h2>
-        <p class="subtitle">Este servicio está por agregarse pero puede, escribirnos directo y te atendemos con gusto.
-        </p>
+        <h2 class="cfg-title">Homenaje póstumo</h2>
+        <p class="subtitle">Elige tu paquete de esquelas, el tamaño de la tu foto grande y
+          confirma. El diseño y los detalles los vemos contigo directo por WhatsApp o correo.</p>
 
-        <div class="channel-row" style="display:flex;">
-          <button class="btn btn-primary" onclick="submitPostumas('whatsapp')">📱 Preguntar por WhatsApp</button>
-          <button class="btn btn-ghost" onclick="submitPostumas('email')">✉️ Preguntar por correo</button>
+        <div class="steps">
+          <div class="step" data-step="1"><span class="stepnum">1</span><span class="step-label">Paquete</span></div>
+          <div class="step" data-step="2"><span class="stepnum">2</span><span class="step-label">Foto grande</span>
+          </div>
+          <div class="step" data-step="3"><span class="stepnum">3</span><span class="step-label">Confirmar</span>
+          </div>
         </div>
 
-        <div class="nav-row">
-          <button class="btn btn-ghost" onclick="goToCatalog()">← Atrás</button>
+        <div class="fstep" data-istep="1">
+          <div class="opt-grid" id="postumasPackGrid"></div>
         </div>
+
+        <div class="fstep" data-istep="2" style="display:none;">
+          <div class="opt-grid" id="postumasSizeGrid"></div>
+        </div>
+
+        <div class="fstep" data-istep="3" style="display:none;">
+          <div class="review-box" id="postumasReview"></div>
+          <p class="postumas-note">El diseño de la esquela (texto, estilo, fotos chicas) lo vemos contigo
+            directo por WhatsApp o correo en cuanto nos escribas — aquí solo confirmas el paquete.</p>
+          <div class="channel-row" id="postumasChannelRow" style="display:none;">
+            <button class="btn btn-primary" onclick="submitPostumas('whatsapp')">📱 Pedir por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitPostumas('email')">✉️ Pedir por correo</button>
+          </div>
+        </div>
+
+        <div class="nav-row" id="postumasNavRow">
+          <button class="btn btn-ghost" onclick="postumasBack()">← Atrás</button>
+          <button class="btn btn-primary" id="postumasNextBtn" onclick="postumasNext()" disabled>Continuar</button>
+        </div>
+
+        <!-- EJEMPLOS DE TRABAJOS — galería de referencia para que el cliente vea
+             más o menos cómo queda el producto antes de pedir.
+             Para agregar fotos reales: guarda cada imagen en
+             assets/fotos/postumas/ (de preferencia .webp) y agrega una línea
+             <img> aquí abajo, copiando el mismo patrón que la galería
+             principal del sitio (busca "gallery-grid" en este archivo).
+             Mientras no haya fotos reales, se muestra el aviso de abajo. -->
+        <!--<div class="postumas-examples">
+          <h3 class="postumas-examples-title">Ejemplos de nuestros trabajos</h3>
+          <div class="gallery-grid" id="postumasExamplesGrid">
+            <img src="assets/fotos/postumas/ejemplo-1.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
+            <p class="postumas-examples-empty">Aquí van a aparecer fotos de trabajos anteriores en cuanto las
+              subamos — por ahora puedes preguntarnos directo por WhatsApp y te mandamos ejemplos.</p>
+          </div>
+        </div> -->
       </section>
 
       <!-- FOTOS ID CONFIGURATOR (se toman en el local, no llevan "manda tus fotos") -->

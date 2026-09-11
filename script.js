@@ -348,6 +348,24 @@ const idPhotoTypes = [
   { id: 'digital', label: 'Fotografía oficial', desc: 'Formato digital', price: 120 },
 ];
 
+// Póstumas (Homenaje Póstumo): el paquete es la cantidad de esquelas, y cada
+// paquete tiene un precio distinto según el tamaño de la foto grande que se
+// elija — es una tabla de precios de dos entradas (paquete × tamaño), tal
+// cual la lista de precios que dio David. El diseño de la esquela (texto,
+// fotos chicas, estilo) se coordina aparte por WhatsApp/correo, no aquí.
+const postumasSizes = [
+  { id: '8x10', label: '8×10' },
+  { id: '11x14', label: '11×14' },
+  { id: '12x18', label: '12×18' },
+  { id: '16x20', label: '16×20' },
+];
+const postumasPackages = [
+  { id: '20', qty: 20, prices: { '8x10': 400, '11x14': 500, '12x18': 550, '16x20': 800 } },
+  { id: '30', qty: 30, prices: { '8x10': 550, '11x14': 650, '12x18': 700, '16x20': 950 } },
+  { id: '40', qty: 40, prices: { '8x10': 700, '11x14': 750, '12x18': 850, '16x20': 1100 } },
+  { id: '50', qty: 50, prices: { '8x10': 850, '11x14': 950, '12x18': 1000, '16x20': 1250 } },
+];
+
 /* ============================================================
    SMALL SHARED HELPERS
    ============================================================ */
@@ -779,20 +797,100 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================================
-   PÓSTUMAS (fotografía para funerales)
-   Todavía no hay medidas ni precios — por eso no tiene pasos de
-   tamaño/cantidad como los demás, solo manda una pregunta directa.
-   En cuanto David tenga los datos, se arma igual que Cuadro o Bastidor.
+   PÓSTUMAS (Homenaje Póstumo)
+   Pasos: 1 Paquete (cantidad de esquelas), 2 Tamaño de foto grande, 3 Confirmar
+   El precio depende de la combinación paquete × tamaño (postumasPackages).
+   El diseño de la esquela en sí se coordina aparte, por WhatsApp/correo.
    ============================================================ */
+let postumasState = { pack: null, size: null, step: 1 };
+
+function renderPostumasPackGrid() {
+  document.getElementById('postumasPackGrid').innerHTML = postumasPackages.map(p => {
+    const minPrice = Math.min(...Object.values(p.prices));
+    return `
+    <div class="opt-card ${postumasState.pack === p.id ? 'selected' : ''}" onclick="selectPostumasPack('${p.id}')">
+      <b>${p.qty} esquelas</b><span>Desde ${money(minPrice)}</span>
+    </div>`;
+  }).join('');
+}
+function selectPostumasPack(id) {
+  postumasState.pack = id;
+  renderPostumasPackGrid();
+  renderPostumasSizeGrid();
+  updatePostumasNextBtn();
+}
+
+function renderPostumasSizeGrid() {
+  const pack = postumasPackages.find(p => p.id === postumasState.pack);
+  document.getElementById('postumasSizeGrid').innerHTML = postumasSizes.map(s => `
+    <div class="opt-card ${postumasState.size === s.id ? 'selected' : ''}" onclick="selectPostumasSize('${s.id}')">
+      <b>${s.label}</b><span>${pack ? money(pack.prices[s.id]) : ''}</span>
+    </div>`).join('');
+}
+function selectPostumasSize(id) { postumasState.size = id; renderPostumasSizeGrid(); updatePostumasNextBtn(); }
+
+function postumasPrice() {
+  const pack = postumasPackages.find(p => p.id === postumasState.pack);
+  if (!pack || !postumasState.size) return 0;
+  return pack.prices[postumasState.size];
+}
+
+function renderPostumasReview() {
+  const pack = postumasPackages.find(p => p.id === postumasState.pack);
+  const size = postumasSizes.find(s => s.id === postumasState.size);
+  document.getElementById('postumasReview').innerHTML = `
+    <div class="review-row"><span>Paquete</span><b>${pack.qty} esquelas</b></div>
+    <div class="review-row"><span>Foto grande</span><b>${size.label}</b></div>
+    <div class="review-row"><span>Total estimado</span><b>${money(postumasPrice())}</b></div>
+  `;
+}
+
+function updatePostumasNextBtn() {
+  const btn = document.getElementById('postumasNextBtn');
+  if (!btn) return;
+  if (postumasState.step === 1) btn.disabled = !postumasState.pack;
+  else if (postumasState.step === 2) btn.disabled = !postumasState.size;
+  else btn.disabled = false;
+}
+
+function goPostumasStep(n) {
+  postumasState.step = n;
+  document.querySelectorAll('#view-postumas .fstep').forEach(el => el.style.display = 'none');
+  document.querySelector(`#view-postumas .fstep[data-istep="${n}"]`).style.display = 'block';
+  document.querySelectorAll('#view-postumas .step').forEach(el => {
+    const s = parseInt(el.dataset.step, 10);
+    el.classList.toggle('active', s === n);
+    el.classList.toggle('done', s < n);
+  });
+  const navRow = document.getElementById('postumasNavRow');
+  const channelRow = document.getElementById('postumasChannelRow');
+  if (n === 3) {
+    renderPostumasReview();
+    navRow.style.display = 'none';
+    channelRow.style.display = 'flex';
+  } else {
+    navRow.style.display = 'flex';
+    channelRow.style.display = 'none';
+  }
+  updatePostumasNextBtn();
+}
+function postumasNext() { if (postumasState.step < 3) goPostumasStep(postumasState.step + 1); }
+function postumasBack() { if (postumasState.step > 1) goPostumasStep(postumasState.step - 1); else goToCatalog(); }
 function startPostumas() {
+  postumasState = { pack: null, size: null, step: 1 };
+  renderPostumasPackGrid();
+  renderPostumasSizeGrid();
+  goPostumasStep(1);
   showView('view-postumas');
 }
 function submitPostumas(channel) {
-  const msg = 'Hola, quiero preguntar por el servicio de fotografía para funerales (Póstumas). ¿Me pueden dar información?';
-  if (channel === 'whatsapp') {
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-  } else {
-    const subject = encodeURIComponent('Pregunta — Fotografía para funerales (Póstumas)');
-    window.location.href = `mailto:${ORDER_EMAIL}?subject=${subject}&body=${encodeURIComponent(msg)}`;
-  }
+  const pack = postumasPackages.find(p => p.id === postumasState.pack);
+  const size = postumasSizes.find(s => s.id === postumasState.size);
+  const total = postumasPrice();
+  const lines = [
+    `Paquete: ${pack.qty} esquelas`,
+    `Foto grande: ${size.label}`,
+    'Nota: quiero ver las opciones de diseño para la esquela.',
+  ];
+  sendOrder(channel, 'Homenaje Póstumo', lines, total);
 }
