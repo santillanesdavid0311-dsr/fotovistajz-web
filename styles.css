@@ -161,8 +161,8 @@ header {
   z-index: 50;
 
   background: linear-gradient(90deg,
-      color-mix(in srgb, var(--brand-blue) 7%, var(--paper)),
-      color-mix(in srgb, var(--brand-pink) 7%, var(--paper)));
+      color-mix(in srgb, var(--brand-blue) 40%, var(--paper)),
+      color-mix(in srgb, var(--brand-pink) 40%, var(--paper)));
 
   border-bottom: 1px solid rgba(38, 32, 25, .12);
   transition: background .6s ease, border-color .6s ease;
@@ -233,7 +233,8 @@ body.darkroom .logo {
 }
 
 .logo span {
-  color: var(--safelight);
+  color: var(#000000);
+  font-weight: bold;
 }
 
 nav {
@@ -333,8 +334,8 @@ body.darkroom .menu-btn {
 .eyebrow {
   display: inline-block;
   font-size: 14px;
-  color: var(--brand-pink);
-  border: 1px solid var(--brand-pink);
+  color: var(--safelight);
+  border: 1px solid var(--safelight);
   padding: 5px 12px;
   border-radius: 16px;
   margin-bottom: 22px;
@@ -1595,6 +1596,13 @@ body.catalog-mode #catalogOverlay {
   border-top: 4px solid var(--brand-yellow);
 }
 
+/* Paquetes — todavía "próximamente", por eso usa un tono neutro (--metal)
+   en vez de uno de los 4 colores de marca, para que se vea distinto a las
+   categorías que sí se pueden pedir hoy. */
+.cat-c-gray {
+  border-top: 4px solid var(--metal);
+}
+
 .cat-c-blue .cat-icon {
   background: color-mix(in srgb, var(--brand-blue) 14%, transparent);
 }
@@ -1611,6 +1619,10 @@ body.catalog-mode #catalogOverlay {
   background: color-mix(in srgb, var(--brand-yellow) 30%, transparent);
 }
 
+.cat-c-gray .cat-icon {
+  background: color-mix(in srgb, var(--metal) 20%, transparent);
+}
+
 .cat-c-blue .cat-tag {
   color: var(--brand-blue);
 }
@@ -1625,6 +1637,10 @@ body.catalog-mode #catalogOverlay {
 
 .cat-c-yellow .cat-tag {
   color: #8a7400;
+}
+
+.cat-c-gray .cat-tag {
+  color: var(--metal);
 }
 
 .prod-card.cat-c-blue .prod-info em {

@@ -168,13 +168,16 @@
       <img src="assets/fotos/srcastillo.webp" alt="Interior del laboratorio Fotovista" width="989" height="1420">
       <div>
         <span class="sec-num">QUIÉNES SOMOS</span>
-        <h2 style="margin-bottom:20px;">Un laboratorio con equipo profesional.</h2>
-        <p>Fotovista JCCastillo imprime, monta, enmarca y toma fotos para documentos, en nuestro local de Ciudad Juárez.
-        </p>
-        <p>Desde 1965 damos servicios de fotográfia y contamos con equipo profesional.</p>
-        <!-- Aquí falta la historia real del negocio contada por la jefa: cuánto tiempo llevan,
-             qué los hace diferentes, etc. En cuanto me la pases la agrego en un segundo párrafo. -->
+        <h2 style="margin-bottom:20px;">Más de 60 años de experiencia fotográfica.</h2>
+        <p>Fotovista JCCastillo nace en 1962, cuando nuestro fundador, José Castillo, inició en Ciudad Juárez con
+          el revelado casero en blanco y negro. Con los años, ese trabajo se convirtió en nuestro propio
+          laboratorio — hoy completamente digital.</p>
+        <p>Con más de 60 años de experiencia, somos expertos en impresión fotográfica de alta calidad,
+          enfocados en fotógrafos profesionales y en quienes aman la fotografía. Enmarcados, montados, mosaicos,
+          fotografía escolar, reconocimientos, impresión en diversos formatos y restauración de fotografías
+          antiguas — incluyendo convertir tus negativos a digital — son parte de nuestra especialización.</p>
         <div class="stat-row">
+          <div class="stat"><b>60+</b><span>Años de experiencia</span></div>
           <div class="stat"><b>5.0★</b><span>Calificación en Google</span></div>
         </div>
       </div>
@@ -209,6 +212,11 @@
           <span class="card-num">04</span>
           <h3>Restauración de fotografías</h3>
           <p>Restaura con nosotros tus fotos antiguas.</p>
+        </div>
+        <div class="card svc-blue">
+          <span class="card-num">05</span>
+          <h3>Convertimos negativos a formato digital</h3>
+          <p>Escanea tus negativos viejos y llévatelos en digital, listos para imprimir o guardar.</p>
         </div>
       </div>
     </div>
@@ -483,6 +491,16 @@
             <p>Credencial, pasaporte, diploma, título y más. Se toman en el local.</p>
             <span class="cat-tag">AGENDAR →</span>
           </div>
+          <!-- PAQUETES — todavía no hay precios definidos, así que por ahora es
+               solo un aviso + contacto directo (igual que Póstumas al principio).
+               En cuanto la jefa defina los combos y precios, se arma con pasos
+               de verdad como las demás categorías. -->
+          <div class="cat-card cat-c-gray" onclick="startPaquetes()">
+            <span class="cat-icon">📦</span>
+            <h3>Paquetes</h3>
+            <p>Combos armados para fotógrafos y clientes frecuentes.</p>
+            <span class="cat-tag">PRÓXIMAMENTE</span>
+          </div>
         </div>
       </section>
 
@@ -577,7 +595,7 @@
       <section class="view" id="view-postumas">
         <span class="sec-num">PÓSTUMAS</span>
         <h2 class="cfg-title">Homenaje póstumo</h2>
-        <p class="subtitle">Elige tu paquete de esquelas, el tamaño de la tu foto grande y
+        <p class="subtitle">Tres pasos: elige tu paquete de esquelas, el tamaño de la foto grande y
           confirma. El diseño y los detalles los vemos contigo directo por WhatsApp o correo.</p>
 
         <div class="steps">
@@ -618,14 +636,14 @@
              <img> aquí abajo, copiando el mismo patrón que la galería
              principal del sitio (busca "gallery-grid" en este archivo).
              Mientras no haya fotos reales, se muestra el aviso de abajo. -->
-        <!--<div class="postumas-examples">
+        <div class="postumas-examples">
           <h3 class="postumas-examples-title">Ejemplos de nuestros trabajos</h3>
           <div class="gallery-grid" id="postumasExamplesGrid">
-            <img src="assets/fotos/postumas/ejemplo-1.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
+            <!-- <img src="assets/fotos/postumas/ejemplo-1.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200"> -->
             <p class="postumas-examples-empty">Aquí van a aparecer fotos de trabajos anteriores en cuanto las
               subamos — por ahora puedes preguntarnos directo por WhatsApp y te mandamos ejemplos.</p>
           </div>
-        </div> -->
+        </div>
       </section>
 
       <!-- FOTOS ID CONFIGURATOR (se toman en el local, no llevan "manda tus fotos") -->
@@ -655,6 +673,26 @@
         <div class="nav-row" id="idPhotoNavRow">
           <button class="btn btn-ghost" onclick="idPhotoBack()">← Atrás</button>
           <button class="btn btn-primary" id="idPhotoNextBtn" onclick="idPhotoNext()" disabled>Continuar</button>
+        </div>
+      </section>
+
+      <!-- PAQUETES — todavía no hay combos ni precios definidos, así que por
+           ahora es solo un aviso + contacto directo, no un flujo de pedido
+           completo. En cuanto la jefa tenga los datos, se arma igual que las
+           demás categorías (avísenme y le hago los pasos de elegir/confirmar). -->
+      <section class="view" id="view-paquetes">
+        <span class="sec-num">PAQUETES</span>
+        <h2 class="cfg-title">Paquetes</h2>
+        <p class="subtitle">Estamos armando combos especiales para fotógrafos y clientes frecuentes —
+          todavía no tenemos los precios definidos. Escríbenos directo y te avisamos en cuanto estén listos.</p>
+
+        <div class="channel-row" style="display:flex;">
+          <button class="btn btn-primary" onclick="submitPaquetes('whatsapp')">📱 Preguntar por WhatsApp</button>
+          <button class="btn btn-ghost" onclick="submitPaquetes('email')">✉️ Preguntar por correo</button>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn btn-ghost" onclick="goToCatalog()">← Atrás</button>
         </div>
       </section>
 
