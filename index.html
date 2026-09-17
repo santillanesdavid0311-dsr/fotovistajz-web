@@ -222,47 +222,36 @@
     </div>
   </section>
 
-  <!-- ============ PRODUCTOS NUEVOS (ahora son accesos directos) ============ 
-  <section class="products site-section" id="productos">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="sec-num">RECIÉN LLEGADO</span>
-        <h2>Productos nuevos</h2>
-        <p>Presiona cualquier producto para armar tu pedido.</p>
-      </div>
-      <div class="prod-grid">
-        <button class="prod-card cat-c-pink" onclick="openProductShortcut('cuadro')"
-          aria-label="Pedir cuadro fotográfico">
-          <img src="assets/fotos/producto-cuadro.webp" alt="Cuadro fotográfico" width="900" height="900">
-          <div class="prod-info">
-            <h3>Cuadro fotográfico</h3>
-            <span>Desde $90</span>
-            <em>Pedir →</em>
-          </div>
-        </button>
-        <button class="prod-card cat-c-amber" onclick="openProductShortcut('cuadro')"
-          aria-label="Pedir foto en bastidor">
-          <img src="assets/fotos/producto-bastidor.webp" alt="Foto en bastidor" width="900" height="900">
-          <div class="prod-info">
-            <h3>Foto en bastidor</h3>
-            <span>Desde $180</span>
-            <em>Pedir →</em>
-          </div>
-        </button>
-        <button class="prod-card cat-c-blue" onclick="openProductShortcut('impresiones')"
-          aria-label="Pedir foto montada en tablilla">
-          <img src="assets/fotos/producto-montada.webp" alt="Foto montada en tablilla">
-          <div class="prod-info">
-            <h3>Foto montada en tablilla</h3>
-            <span>Desde $150</span>
-            <em>Pedir →</em>
-          </div>
-        </button>
-
+  <!-- ============ PARA FOTÓGRAFOS ============
+       Anuncio dirigido a fotógrafos profesionales para que impriman su
+       trabajo (sesiones, bodas, portafolios) con nosotros. Reutiliza el
+       mismo layout de imagen + texto de la sección de Nosotros (clase
+       "about-grid"). El botón principal abre el catálogo directo en
+       Impresiones (openProductShortcut ya hace eso) y el de WhatsApp manda
+       un mensaje con contexto de fotógrafo — armado en script.js, busca
+       "photogWhatsappBtn". -->
+  <section class="products site-section dark-section" id="para-fotografos">
+    <div class="wrap about-grid">
+      <img src="assets/fotos/extra/extra-1.webp" alt="Impresora de gran formato en el laboratorio Fotovista"
+        width="1600" height="1068">
+      <div>
+        <span class="sec-num">PARA FOTÓGRAFOS</span>
+        <h2 style="margin-bottom:20px;">¿Eres fotógrafo? Imprime tu trabajo con nosotros.</h2>
+        <p>Sesiones de estudio, bodas, XV años, retratos y más — con la calidad de impresión que tu
+          trabajo se merece: gran formato, montajes, mosaicos y enmarcados, listos para portafolio,
+          exposición o entrega a tus clientes.</p>
+        <p>Si tienes tu código de fotógrafo, aplícalo directo al hacer tu pedido de impresiones y obtén
+          precio especial.</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" onclick="openProductShortcut('impresiones')">Pedir mis
+            impresiones</button>
+          <a href="#" id="photogWhatsappBtn" class="btn btn-ghost" target="_blank" rel="noopener">📱 Preguntar por
+            WhatsApp</a>
+        </div>
       </div>
     </div>
   </section>
--->
+
   <!-- ============ GALERÍA ============ -->
   <section id="galeria" class="site-section">
     <div class="wrap">
@@ -630,12 +619,7 @@
         </div>
 
         <!-- EJEMPLOS DE TRABAJOS — galería de referencia para que el cliente vea
-             más o menos cómo queda el producto antes de pedir.
-             Para agregar fotos reales: guarda cada imagen en
-             assets/fotos/postumas/ (de preferencia .webp) y agrega una línea
-             <img> aquí abajo, copiando el mismo patrón que la galería
-             principal del sitio (busca "gallery-grid" en este archivo).
-             Mientras no haya fotos reales, se muestra el aviso de abajo. -->
+             más o menos cómo queda el producto antes de pedir. -->
         <div class="postumas-examples">
           <h3 class="postumas-examples-title">Ejemplos de nuestros trabajos</h3>
           <div class="gallery-grid" id="postumasExamplesGrid">
@@ -643,7 +627,6 @@
             <img src="assets/fotos/postuma 2.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
             <img src="assets/fotos/postuma 3.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
             <img src="assets/fotos/postuma 4.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
-            <p class="postumas-examples-empty"></p>
           </div>
         </div>
       </section>
