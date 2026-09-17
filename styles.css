@@ -412,6 +412,11 @@ body.darkroom .btn-ghost {
   color: #EAD9C9;
 }
 
+.dark-section .btn-ghost {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
 .btn-ghost:hover {
   transform: translateY(-2px);
 }
