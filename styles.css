@@ -662,6 +662,7 @@ body.darkroom .sec-head h2 {
 
   transition:
     transform .25s,
+    box-shadow .25s,
     background .6s,
     border-color .6s;
 }
@@ -673,6 +674,7 @@ body.darkroom .card {
 
 .card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(38, 32, 25, .12);
 }
 
 .card-num {
@@ -882,14 +884,15 @@ body.darkroom .svc-amber:hover {
   border-radius: 2px;
   cursor: pointer;
 
-  transition: opacity .2s;
+  transition: transform .3s, box-shadow .3s;
 
   margin-bottom: 14px;
   break-inside: avoid;
 }
 
 .gallery-grid img:hover {
-  opacity: .85;
+  transform: scale(1.045);
+  box-shadow: 0 12px 24px rgba(38, 32, 25, .25);
 }
 
 /* ==========================================================
@@ -1531,6 +1534,7 @@ body.catalog-mode #catalogOverlay {
 
   transition:
     transform .2s,
+    box-shadow .2s,
     border-color .2s;
 
   text-align: left;
@@ -1539,6 +1543,7 @@ body.catalog-mode #catalogOverlay {
 .cat-card:hover {
   transform: translateY(-4px);
   border-color: var(--safelight);
+  box-shadow: 0 14px 28px rgba(38, 32, 25, .12);
 }
 
 .cat-icon {
@@ -2755,4 +2760,90 @@ body.catalog-mode .whatsapp-float {
 .contact-fallback-actions .btn {
   font-size: 14px;
   padding: 10px 16px;
+}
+
+/* ==========================================================
+   ANIMACIONES AL HACER SCROLL
+   script.js le pone la clase "reveal-on-scroll" a cada sección
+   principal y luego prende/apaga "is-visible" según entra o sale de
+   la pantalla — por eso la transición sirve tanto bajando como
+   subiendo la página.
+   ========================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s cubic-bezier(.22, .61, .36, 1),
+    transform .7s cubic-bezier(.22, .61, .36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Cuadrículas con aparición "en cascada": script.js le pone la clase
+   "stagger-grid" a las cuadrículas (servicios, categorías, galería) y
+   luego prende/apaga "is-visible" igual que arriba. Cada tarjeta/foto
+   tiene su propio pequeño retraso según su posición, así no aparecen
+   todas de golpe. */
+.stagger-grid>* {
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+.stagger-grid:not(.is-visible)>* {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger-grid.is-visible>*:nth-child(1) {
+  transition-delay: 0ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(2) {
+  transition-delay: 70ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(3) {
+  transition-delay: 140ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(4) {
+  transition-delay: 210ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(5) {
+  transition-delay: 280ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(6) {
+  transition-delay: 350ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(7) {
+  transition-delay: 420ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(8) {
+  transition-delay: 490ms;
+}
+
+.stagger-grid.is-visible>*:nth-child(n+9) {
+  transition-delay: 560ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger-grid>* {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

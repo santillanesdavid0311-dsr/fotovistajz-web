@@ -160,6 +160,13 @@ document.addEventListener('DOMContentLoaded', () => {
     photogWhatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
   }
 
+  // Botón de WhatsApp del anuncio "Homenaje póstumo"
+  const homenajeWhatsappBtn = document.getElementById('homenajeWhatsappBtn');
+  if (homenajeWhatsappBtn) {
+    const msg = encodeURIComponent('Hola, quisiera información sobre el servicio de homenaje póstumo (esquelas, ampliaciones y restauración de fotos).');
+    homenajeWhatsappBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  }
+
   /* ---------- PROMO BUBBLE ----------
      La burbujita aparece sola, se esconde sola, y se repite cada cierto
      tiempo — así no estorba todo el rato. Números que puedes ajustar:
@@ -235,6 +242,7 @@ function openProductShortcut(type) {
   if (type === 'impresiones') startImpresiones();
   else if (type === 'cuadro') startCuadro();
   else if (type === 'fotosid') startIdPhoto();
+  else if (type === 'postumas') startPostumas();
 }
 
 /* ============================================================
@@ -921,3 +929,86 @@ function submitPostumas(channel) {
   ];
   sendOrder(channel, 'Homenaje Póstumo', lines, total);
 }
+
+/* ============================================================
+   ANIMACIONES AL HACER SCROLL
+   Tres efectos, todos con el mismo criterio: si el visitante tiene
+   activado "reducir movimiento" en su sistema, o su navegador no
+   soporta IntersectionObserver, se muestra todo de una vez sin animar.
+
+   1) SECCIONES: cada sección principal ("site-section", menos el hero
+      que ya se ve de entrada) aparece con un fundido + deslizado hacia
+      arriba cuando entra en pantalla. Como el observer usa
+      isIntersecting (no "once"), la sección se vuelve a ocultar al
+      salir de la vista y se re-anima la próxima vez que entra — mismo
+      efecto bajando y subiendo la página.
+
+   2) CUADRÍCULAS EN CASCADA: dentro de Servicios, Productos y Galería,
+      cada tarjeta/foto aparece con un pequeño retraso respecto a la
+      anterior (ver los ".stagger-grid" en styles.css), en vez de
+      aparecer todas de golpe.
+
+   3) CONTADORES: los números de "60+ años" / "5.0★" en Nosotros cuentan
+      desde 0 hasta su valor cada vez que esa sección entra en pantalla.
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canObserve = 'IntersectionObserver' in window;
+
+  // ---------- 1) Secciones ----------
+  const revealTargets = document.querySelectorAll('.site-section:not(.hero)');
+  revealTargets.forEach(el => el.classList.add('reveal-on-scroll'));
+
+  if (prefersReducedMotion || !canObserve) {
+    revealTargets.forEach(el => el.classList.add('is-visible'));
+  } else if (revealTargets.length) {
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    revealTargets.forEach(el => scrollObserver.observe(el));
+  }
+
+  // ---------- 2) Cuadrículas en cascada ----------
+  const staggerGrids = document.querySelectorAll('.services-grid, .cat-grid, .gallery-grid');
+  staggerGrids.forEach(el => el.classList.add('stagger-grid'));
+
+  if (prefersReducedMotion || !canObserve) {
+    staggerGrids.forEach(el => el.classList.add('is-visible'));
+  } else if (staggerGrids.length) {
+    const staggerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+    staggerGrids.forEach(el => staggerObserver.observe(el));
+  }
+
+  // ---------- 3) Contadores ----------
+  const counters = document.querySelectorAll('[data-count-to]');
+  if (counters.length && !prefersReducedMotion && canObserve) {
+    const animateCounter = (el) => {
+      const target = parseFloat(el.dataset.countTo);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1100;
+      const start = performance.now();
+      const step = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out
+        el.textContent = (target * eased).toFixed(decimals) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target.toFixed(decimals) + suffix;
+      };
+      requestAnimationFrame(step);
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) animateCounter(entry.target);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(el => counterObserver.observe(el));
+  }
+});
