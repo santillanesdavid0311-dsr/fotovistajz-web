@@ -1,0 +1,1744 @@
+/* ==========================================================
+   theme.css — identidad "Hoja de contactos" (se carga DESPUÉS de styles.css)
+
+   Idea: un laboratorio fotográfico de barrio con 60 años de oficio.
+   - Papel claro y neutro, tinta negro-azulada (sale del azul del logo).
+   - Los 4 colores del logo funcionan como una tira de control de color
+     de imprenta, y cada uno identifica una familia de productos:
+       azul     → Impresiones, negativos, fotógrafos
+       rosa     → Cuadro, bastidor y pósters
+       ámbar    → Homenaje póstumo y restauración
+       amarillo → Fotos ID, currículum y LinkedIn
+   - Las fotos se ven como impresiones físicas: borde blanco de papel y
+     sombra de mesa. Lo más llamativo son las tres impresiones del hero,
+     dibujadas a escala real entre sí (16×20, 5×7 y 4×6).
+   - Modo "cuarto oscuro": luz roja de seguridad, se prende con el botón
+     del header (body.darkroom). Solo cambia los tokens de color.
+
+   Títulos: Playpen Sans (elegida por la dueña). Texto: Source Serif 4.
+
+   La lógica (script.js, immersive.js, IDs, onclick) NO se toca.
+   ========================================================== */
+
+/* ==========================================================
+   0) TOKENS
+   ========================================================== */
+
+:root {
+  /* Superficies y tinta */
+  --papel: #F7F7F4;          /* fondo general, blanco neutro (no crema) */
+  --fijador: #E8E8E3;        /* gris de cuba de fijador: secciones alternas */
+  --superficie: #FFFFFF;     /* tarjetas, campos, recuadros */
+  --tinta: #1B1F2B;          /* texto principal, negro azulado */
+  --tinta-2: #565B66;        /* texto secundario (≥5.5:1 sobre papel y fijador) */
+  --linea: rgba(27, 31, 43, .14);
+  --linea-fuerte: rgba(27, 31, 43, .30);
+
+  /* Escenario oscuro (Homenaje y footer) */
+  --escenario: #171B26;
+  --sobre-escenario: #EEF0F4;
+  --sobre-escenario-2: #B4B9C4;
+
+  /* Los 4 colores del logo */
+  --azul: #19359C;           /* acciones y enlaces (10:1 sobre papel) */
+  --azul-hondo: #11266F;
+  --rosa: #D9237D;           /* solo bloques, bordes y textos grandes */
+  --ambar: #E9A200;          /* solo bloques de color */
+  --ambar-oscuro: #A66F00;   /* estrellas y detalles sobre fondo claro */
+  --amarillo: #FFEF37;       /* solo bloques y detalles sobre oscuro */
+
+  --accion: var(--azul);
+  --accion-hover: var(--azul-hondo);
+  --sobre-accion: #FFFFFF;
+  --foco: var(--azul);
+
+  /* Tira de control de color: 4 bloques sólidos, sin degradado */
+  --tira: linear-gradient(90deg,
+      var(--azul) 0 25%, var(--rosa) 25% 50%,
+      var(--ambar) 50% 75%, var(--amarillo) 75% 100%);
+
+  /* Impresión física */
+  --impresion-borde: #FFFFFF;
+  --sombra-impresion: 0 1px 2px rgba(23, 27, 38, .16), 0 14px 30px -14px rgba(23, 27, 38, .38);
+
+  /* Tipografía */
+  --font-display: 'Playpen Sans', cursive;
+  --font-text: 'Source Serif 4', serif;
+  --t-14: 14px;
+  --t-16: 16px;
+  --t-18: 18px;
+  --t-21: 21px;
+  --t-24: 24px;
+  --t-h3: clamp(22px, 2.2vw, 28px);
+  --t-h2: clamp(34px, 4.6vw, 60px);
+  --t-h1: clamp(50px, 7vw, 108px);
+  --lh-text: 1.65;
+  --medida: 34em;
+
+  /* Espaciado (base 4) */
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+  --s-18: 72px;
+  --seccion: clamp(72px, 9vw, 128px);
+
+  /* Radios con jerarquía */
+  --r-control: 4px;
+  --r-panel: 6px;
+
+  --ancho: 1240px;
+  --margen: 28px;
+  --header-h: 72px;
+  --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --rapido: .15s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Alias para que styles.css (la base) use la misma paleta */
+  --paper: var(--papel);
+  --paper-dim: var(--fijador);
+  --ink: var(--tinta);
+  --charcoal: var(--escenario);
+  --metal: #8A8E96;
+  --safelight: var(--accion);
+}
+
+/* Cuarto oscuro: mismo diseño, iluminado con luz roja de seguridad */
+body.darkroom {
+  --papel: #140C0A;
+  --fijador: #1C1210;
+  --superficie: #22160F;
+  --tinta: #F3DFD0;
+  --tinta-2: #C9AE9C;
+  --linea: rgba(243, 223, 208, .16);
+  --linea-fuerte: rgba(243, 223, 208, .32);
+
+  --escenario: #0B0605;
+  --sobre-escenario: #F3DFD0;
+  --sobre-escenario-2: #C9AE9C;
+
+  --accion: #C8361F;           /* rojo de luz de seguridad (5:1 con blanco) */
+  --accion-hover: #A82A16;
+  --foco: #FF7A5C;
+
+  --impresion-borde: #E4CDBE;
+  --sombra-impresion: 0 1px 2px rgba(0, 0, 0, .5), 0 16px 34px -14px rgba(0, 0, 0, .8);
+
+  --metal: #9C8273;
+}
+
+/* ==========================================================
+   1) BASE
+   ========================================================== */
+
+body,
+body.darkroom {
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--font-text);
+  font-size: var(--t-18);
+  line-height: var(--lh-text);
+  transition: background-color .6s ease, color .6s ease;
+}
+
+h1,
+h2,
+h3,
+.cfg-title {
+  font-family: var(--font-display);
+  color: inherit;
+  text-wrap: balance;
+}
+
+h1, h2 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+}
+
+h3 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+}
+
+p { text-wrap: pretty; }
+
+a { transition: color var(--rapido); }
+
+::selection { background: var(--amarillo); color: #1B1F2B; }
+
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+}
+
+/* La luz de seguridad: un velo rojo muy suave sobre todo, incluidas las fotos */
+#safelight-overlay { background: rgba(200, 40, 20, 0); }
+body.darkroom #safelight-overlay { background: rgba(200, 40, 20, .14); }
+
+/* Sin aparición en cascada en cada sección: el contenido ya está ahí.
+   El único momento animado es la entrada de las impresiones del hero. */
+.reveal-on-scroll,
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+
+.stagger-grid > *,
+.stagger-grid:not(.is-visible) > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================
+   2) BOTONES Y CAMPOS
+   ========================================================== */
+
+.btn {
+  font-family: var(--font-text);
+  font-size: var(--t-16);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.2;
+  padding: 14px 24px;
+  border-radius: var(--r-control);
+  border: 1.5px solid transparent;
+  transition:
+    background-color var(--rapido),
+    color var(--rapido),
+    border-color var(--rapido),
+    transform var(--rapido);
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primary,
+body.darkroom .btn-primary {
+  background: var(--accion);
+  border-color: var(--accion);
+  color: var(--sobre-accion);
+}
+
+.btn-primary:hover {
+  background: var(--accion-hover);
+  border-color: var(--accion-hover);
+  transform: none;
+}
+
+.btn-ghost,
+.dark-section .btn-ghost,
+body.darkroom .btn-ghost {
+  background: transparent;
+  border-color: var(--linea-fuerte);
+  color: var(--tinta);
+}
+
+.btn-ghost:hover {
+  border-color: var(--tinta);
+  background: transparent;
+  transform: none;
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+input,
+textarea,
+body.darkroom input,
+body.darkroom textarea {
+  font-family: var(--font-text);
+  font-size: var(--t-16);
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--r-control);
+}
+
+input::placeholder,
+textarea::placeholder { color: var(--tinta-2); opacity: 1; }
+
+input:focus,
+textarea:focus {
+  outline: 3px solid color-mix(in srgb, var(--foco) 35%, transparent);
+  outline-offset: 0;
+  border-color: var(--foco);
+}
+
+/* ==========================================================
+   3) ETIQUETAS DE SECCIÓN
+   Una muestra de color dice a qué familia de productos pertenece
+   la sección. Si no hay familia, la muestra es la tira completa.
+   ========================================================== */
+
+.sec-num {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-text);
+  font-size: var(--t-16);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--tinta-2);
+  margin-bottom: var(--s-4);
+}
+
+.sec-num::before {
+  content: '';
+  flex: none;
+  width: 28px;
+  height: 10px;
+  background: var(--muestra, var(--tira));
+  box-shadow: inset 0 0 0 1px rgba(27, 31, 43, .12);
+}
+
+.dark-section .sec-num,
+body.immersive .dark-section .sec-num { color: inherit; }
+
+#foto-cv, .cat-c-yellow, .svc-yellow, #view-fotosid { --muestra: var(--amarillo); --familia: var(--amarillo); }
+#posters, .cat-c-pink, .svc-pink, #view-cuadro, #view-preview { --muestra: var(--rosa); --familia: var(--rosa); }
+#homenaje, .cat-c-amber, .svc-amber, #view-postumas { --muestra: var(--ambar); --familia: var(--ambar); }
+#para-fotografos, .cat-c-blue, .svc-blue, #view-impresiones { --muestra: var(--azul); --familia: var(--azul); }
+.cat-c-gray, #view-paquetes { --familia: var(--metal); }
+
+/* Muestra cuadrada para las secciones de producto */
+#foto-cv .sec-num::before,
+#posters .sec-num::before,
+#homenaje .sec-num::before,
+#para-fotografos .sec-num::before,
+.view .sec-num::before {
+  width: 14px;
+  height: 14px;
+}
+
+/* ==========================================================
+   4) HEADER
+   ========================================================== */
+
+body.immersive header,
+body.darkroom header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  background: color-mix(in srgb, var(--papel) 94%, transparent);
+  border-bottom: 0;
+  transition: background-color .6s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  body.immersive header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+header::after,
+body.darkroom header::after {
+  height: 4px;
+  background: var(--tira);
+  opacity: 1;
+}
+
+body.immersive header .wrap {
+  max-width: var(--ancho);
+  min-height: var(--header-h);
+  padding: 12px var(--margen);
+  gap: 24px;
+}
+
+body.immersive header .logo,
+body.immersive .menu-btn {
+  position: relative;
+  z-index: 2;
+}
+
+body.immersive .logo-img {
+  height: 38px;
+  width: auto;
+}
+
+/* El logo tiene letras negras: en oscuro se invierten sin perder el color del remolino */
+body.darkroom .logo-img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.logo-tagline,
+body.darkroom .logo-tagline {
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--tinta-2);
+  opacity: 1;
+}
+
+nav a,
+body.darkroom nav a {
+  font-family: var(--font-text);
+  color: var(--tinta);
+  letter-spacing: 0;
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Interruptor del cuarto oscuro */
+.safelight-toggle,
+body.darkroom .safelight-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: 1px solid var(--linea-fuerte);
+  border-radius: var(--r-control);
+  color: var(--tinta);
+  font-family: var(--font-text);
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 1;
+  padding: 10px 14px;
+  min-height: 40px;
+  cursor: pointer;
+  transition: border-color var(--rapido), color var(--rapido), background-color var(--rapido);
+}
+
+.safelight-toggle:hover { border-color: var(--tinta); color: var(--tinta); }
+
+.safelight-toggle .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+body.darkroom .safelight-toggle .dot,
+body.darkroom .dot {
+  background: #FF3B1F;
+  box-shadow: 0 0 0 1.5px #FF3B1F, 0 0 10px 2px rgba(255, 59, 31, .7);
+}
+
+/* Escritorio: links en línea; "Productos" es la acción principal */
+@media (min-width: 901px) {
+  body.immersive .menu-btn { display: none; }
+
+  body.immersive nav { gap: clamp(16px, 2.2vw, 30px); }
+
+  body.immersive nav a {
+    font-size: var(--t-16);
+    opacity: 1;
+    position: relative;
+  }
+
+  body.immersive nav a:not(#navProductos)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .35s var(--ease-out);
+  }
+
+  body.immersive nav a:not(#navProductos):hover::after { transform: scaleX(1); }
+
+  body.immersive nav #navProductos {
+    background: var(--accion);
+    color: var(--sobre-accion);
+    border-radius: var(--r-control);
+    padding: 9px 18px;
+    font-weight: 600;
+    transition: background-color var(--rapido);
+  }
+
+  body.immersive nav #navProductos:hover { background: var(--accion-hover); }
+}
+
+@media (min-width: 901px) and (max-width: 1140px) {
+  .safelight-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+/* Botón "Menú" (celular) */
+body.immersive .menu-btn {
+  align-items: center;
+  gap: 10px;
+  background: var(--tinta);
+  color: var(--papel);
+  border: 0;
+  border-radius: var(--r-control);
+  padding: 11px 16px;
+  min-height: 40px;
+  font-family: var(--font-text);
+  font-size: var(--t-16);
+  line-height: 1;
+  cursor: pointer;
+}
+
+body.immersive .menu-lines {
+  display: inline-block;
+  width: 18px;
+  height: 9px;
+  border-top: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+}
+
+body.menu-open { overflow: hidden; }
+
+@media (max-width: 900px) {
+  body.immersive .menu-btn { display: inline-flex; }
+
+  .safelight-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Menú a pantalla completa, sobre papel */
+  body.immersive nav,
+  body.darkroom nav {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 1;
+    background: var(--papel);
+    padding: calc(var(--header-h) + 28px) 24px 40px;
+    gap: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow-y: auto;
+    border: 0;
+    transform: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s var(--ease-out), visibility .35s;
+  }
+
+  body.immersive nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  body.immersive nav a {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(28px, 8vw, 40px);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  body.immersive nav #navProductos { color: var(--accion); }
+}
+
+/* ---------- Header transparente sobre la foto del hero ----------
+   Arriba del todo el header no tiene fondo y va en blanco. Al bajar
+   (immersive.js le pone .scrolled), con el menú del celular abierto o
+   con el catálogo abierto vuelve a ser sólido. */
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled)::after { opacity: 0; }
+
+header::after { transition: opacity .45s ease; }
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) .logo-img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) .logo-tagline,
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) nav a,
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) .safelight-toggle {
+  color: #FFFFFF;
+}
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) .logo-tagline { opacity: .85; }
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) .safelight-toggle {
+  border-color: rgba(255, 255, 255, .55);
+}
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) .safelight-toggle:hover {
+  border-color: #FFFFFF;
+}
+
+/* "Productos": contorno blanco sobre la foto, se rellena al pasar el mouse */
+@media (min-width: 901px) {
+  body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) nav #navProductos {
+    background: transparent;
+    box-shadow: inset 0 0 0 1.5px #FFFFFF;
+  }
+  body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) nav #navProductos:hover {
+    background: #FFFFFF;
+    color: #1B1F2B;
+  }
+}
+
+body.immersive:not(.catalog-mode):not(.menu-open) header:not(.scrolled) .menu-btn {
+  background: rgba(255, 255, 255, .12);
+  color: #FFFFFF;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45);
+}
+
+/* Con el catálogo abierto se ocultan las secciones (incluido el hero) */
+body.immersive.catalog-mode .site-section { display: none; }
+body.immersive #catalogOverlay { padding-top: var(--header-h); }
+
+/* ==========================================================
+   5) HERO — foto del laboratorio de fondo (lab-1.webp, pedido de la
+      jefa) y encima las tres impresiones a escala real.
+      Para cambiar la foto, edita la url de ".hero-bg".
+   ========================================================== */
+
+body.immersive .hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: min(100svh, 940px);
+  padding: calc(var(--header-h) + clamp(24px, 5vw, 64px)) 0 0;
+  background: var(--escenario);
+  color: #FFFFFF;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+body.immersive .hero-bg {
+  display: block;
+  position: absolute;
+  inset: -8% 0;
+  z-index: -2;
+  background: url("assets/fotos/lab-1.webp") center 40% / cover no-repeat;
+  will-change: transform;
+}
+
+/* Velo para que el texto blanco siempre se lea sobre la foto */
+body.immersive .hero::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(14, 16, 24, .6) 0, rgba(14, 16, 24, 0) 180px),
+    linear-gradient(95deg, rgba(14, 16, 24, .86) 0%, rgba(14, 16, 24, .66) 50%, rgba(14, 16, 24, .38) 100%);
+}
+
+body.darkroom .hero::before {
+  background:
+    linear-gradient(180deg, rgba(20, 8, 6, .6) 0, rgba(20, 8, 6, 0) 180px),
+    linear-gradient(95deg, rgba(20, 8, 6, .9) 0%, rgba(20, 8, 6, .74) 50%, rgba(20, 8, 6, .5) 100%);
+}
+
+.hero-mark { display: none; }
+
+body.immersive .hero-grid {
+  flex: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  padding: 0 var(--margen);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: center;
+}
+
+body.immersive .hero .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  margin-bottom: var(--s-6);
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-family: var(--font-text);
+  font-size: var(--t-18);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: rgba(255, 255, 255, .88);
+}
+
+body.immersive .hero .eyebrow::before {
+  content: '';
+  flex: none;
+  width: 44px;
+  height: 10px;
+  background: var(--tira);
+}
+
+body.immersive .hero h1 {
+  font-size: var(--t-h1);
+  line-height: 1;
+  max-width: 9em;
+  margin-bottom: var(--s-6);
+  color: #FFFFFF;
+}
+
+body.immersive .hero p {
+  font-size: clamp(20px, 1.9vw, 26px);
+  line-height: 1.45;
+  max-width: 22em;
+  margin-bottom: var(--s-8);
+  color: rgba(255, 255, 255, .94);
+  opacity: 1;
+}
+
+/* Sobre la foto oscura el botón principal va en blanco */
+body.immersive .hero .btn-primary {
+  font-size: var(--t-18);
+  padding: 16px 28px;
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  color: #1B1F2B;
+}
+
+body.immersive .hero .btn-primary:hover {
+  background: var(--amarillo);
+  border-color: var(--amarillo);
+  color: #1B1F2B;
+}
+
+/* La mesa de impresiones: 1 "pulgada" = --pulgada px, así que las tres
+   fotos guardan la proporción real entre sus tamaños. */
+body.immersive .photo-stack {
+  --pulgada: clamp(14px, 1.7vw, 22px);
+  position: relative;
+  width: calc(var(--pulgada) * 24);
+  max-width: 100%;
+  height: calc(var(--pulgada) * 24);
+  justify-self: center;
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .9s var(--ease-out);
+}
+
+body.immersive .photo-card {
+  background: var(--impresion-borde);
+  padding: calc(var(--pulgada) * .45) calc(var(--pulgada) * .45) 28px;
+  border-radius: 1px;
+  box-shadow: var(--sombra-impresion);
+  transform: rotate(var(--rot));
+  animation: pc-in 1.1s var(--ease-out) var(--d, .3s) both;
+}
+
+body.immersive .photo-card.dragging { box-shadow: 0 24px 48px -16px rgba(23, 27, 38, .5); }
+
+body.immersive .pc-1 { width: calc(var(--pulgada) * 16); top: 0; left: 0; --d: .25s; }
+body.immersive .pc-2 { width: calc(var(--pulgada) * 5); top: calc(var(--pulgada) * 2.5); left: calc(var(--pulgada) * 17.2); --d: .45s; }
+body.immersive .pc-3 { width: calc(var(--pulgada) * 4); top: calc(var(--pulgada) * 13); left: calc(var(--pulgada) * 18.4); --d: .65s; }
+
+body.immersive .photo-card .pc-tag {
+  left: calc(var(--pulgada) * .45);
+  bottom: 6px;
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #565B66;
+}
+
+.stack-note {
+  position: absolute;
+  left: calc(var(--pulgada) * 17.2);
+  top: calc(var(--pulgada) * 21.2);
+  max-width: calc(var(--pulgada) * 6.8);
+  font-size: var(--t-14);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .8);
+}
+
+@keyframes pc-in {
+  from { opacity: 0; transform: rotate(calc(var(--rot) * 2.2)) translateY(-60px) scale(1.04); }
+  to { opacity: 1; transform: rotate(var(--rot)); }
+}
+
+.hero-foot {
+  width: 100%;
+  max-width: var(--ancho);
+  margin: clamp(32px, 4vw, 56px) auto 0;
+  padding: 18px var(--margen) 22px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 32px;
+  border-top: 1px solid rgba(255, 255, 255, .22);
+  font-size: var(--t-16);
+  color: rgba(255, 255, 255, .85);
+}
+
+.hero-foot a {
+  color: #FFFFFF;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.hero-foot a:hover { color: var(--amarillo); }
+
+@media (max-width: 900px) {
+  body.immersive .hero { min-height: 0; }
+  body.immersive .hero-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-12);
+    padding: 0 20px;
+  }
+  body.immersive .hero h1 { font-size: clamp(46px, 13vw, 76px); }
+  body.immersive .hero p { font-size: var(--t-21); }
+  body.immersive .photo-stack {
+    --pulgada: min(18px, calc((100vw - 40px) / 24));
+    justify-self: start;
+  }
+  .hero-foot { padding: 16px 20px 20px; }
+}
+
+/* deja libre la esquina del botón flotante de WhatsApp */
+@media (min-width: 901px) {
+  .hero-foot { padding-right: calc(var(--margen) + 72px); }
+}
+
+/* ==========================================================
+   6) SECCIONES — ritmo papel / fijador, una sola sección oscura
+   ========================================================== */
+
+body.immersive .site-section h2,
+body.immersive .site-section h3 { color: inherit; }
+
+/* Al saltar desde el menú, el título no queda bajo el header fijo */
+body.immersive .site-section { scroll-margin-top: var(--header-h); }
+
+body.immersive .sec-head { max-width: 620px; margin-bottom: var(--s-12); }
+
+body.immersive .sec-head h2,
+body.immersive .about-grid h2,
+body.immersive #foto-cv h2,
+body.immersive #contacto h2 {
+  font-size: var(--t-h2);
+  margin-bottom: var(--s-6);
+}
+
+body.immersive .sec-head p {
+  font-size: var(--t-18);
+  line-height: var(--lh-text);
+  color: var(--tinta-2);
+  opacity: 1;
+  max-width: 28em;
+  margin-top: var(--s-4);
+}
+
+/* Fondos: claro predomina; Homenaje y footer son el escenario oscuro */
+body.immersive #nosotros,
+body.immersive #foto-cv,
+body.immersive #para-fotografos,
+body.immersive #resenas,
+body.immersive #contacto {
+  background: var(--fijador);
+  background-image: none;
+  color: var(--tinta);
+}
+
+body.immersive #servicios,
+body.immersive #posters,
+body.immersive #galeria,
+body.immersive #faq {
+  background: var(--papel);
+  background-image: none;
+  color: var(--tinta);
+}
+
+body.immersive #homenaje {
+  background: var(--escenario);
+  background-image: none;
+  color: var(--sobre-escenario);
+}
+
+/* ---------- Secciones partidas foto | texto ---------- */
+
+body.immersive .about,
+body.immersive #posters,
+body.immersive #homenaje,
+body.immersive #para-fotografos {
+  padding: var(--seccion) 0;
+}
+
+body.immersive .about-grid {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 0 var(--margen);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 7vw, 112px);
+  align-items: center;
+}
+
+body.immersive .about-grid > div { padding: 0; }
+
+body.immersive .about-grid p,
+body.immersive #foto-cv p {
+  font-size: var(--t-18);
+  line-height: var(--lh-text);
+  max-width: var(--medida);
+  opacity: 1;
+  margin-bottom: var(--s-4);
+}
+
+body.immersive .about-grid .btn-row,
+body.immersive #foto-cv .btn-row { margin-top: var(--s-8); }
+
+/* La foto de cada sección es una impresión puesta sobre la mesa */
+body.immersive .about-grid > img {
+  justify-self: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(78vh, 720px);
+  object-fit: contain;
+  background: var(--impresion-borde);
+  padding: clamp(8px, 1.1vw, 14px);
+  border-radius: 1px;
+  box-shadow: var(--sombra-impresion);
+}
+
+body.immersive #posters .about-grid > img,
+body.immersive #para-fotografos .about-grid > img { order: 2; }
+
+body.immersive #homenaje .about-grid p { color: var(--sobre-escenario); }
+body.immersive #homenaje .sec-num { color: var(--sobre-escenario-2); }
+body.immersive #homenaje .btn-primary {
+  background: var(--sobre-escenario);
+  border-color: var(--sobre-escenario);
+  color: var(--escenario);
+}
+body.immersive #homenaje .btn-primary:hover { background: #FFFFFF; border-color: #FFFFFF; }
+body.immersive #homenaje .btn-ghost {
+  border-color: rgba(238, 240, 244, .55);
+  color: var(--sobre-escenario);
+}
+body.immersive #homenaje .btn-ghost:hover { border-color: var(--sobre-escenario); }
+body.darkroom #homenaje .btn-primary { color: #0B0605; }
+
+/* Cifras de Nosotros */
+body.immersive .stat-row { gap: var(--s-12); margin-top: var(--s-8); }
+
+body.immersive .stat b {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(44px, 5vw, 64px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--accion);
+}
+
+body.immersive .stat span {
+  font-size: var(--t-16);
+  color: var(--tinta-2);
+  opacity: 1;
+  letter-spacing: 0;
+}
+
+@media (max-width: 900px) {
+  body.immersive .about-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+  body.immersive .about-grid > img,
+  body.immersive #posters .about-grid > img,
+  body.immersive #para-fotografos .about-grid > img {
+    order: -1;
+    max-height: 64vh;
+  }
+}
+
+/* ---------- Servicios: lista con la muestra de color de cada familia ---------- */
+
+body.immersive #servicios,
+body.immersive #faq,
+body.immersive #galeria,
+body.immersive .reviews,
+body.immersive #contacto,
+body.immersive #foto-cv {
+  padding: var(--seccion) 0;
+}
+
+body.immersive #servicios > .wrap,
+body.immersive #faq > .wrap {
+  max-width: var(--ancho);
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+}
+
+body.immersive #servicios .sec-head,
+body.immersive #faq .sec-head {
+  position: sticky;
+  top: calc(var(--header-h) + 32px);
+}
+
+body.immersive .services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+body.immersive .services-grid .card,
+body.darkroom .services-grid .card {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) minmax(0, 1fr);
+  gap: 6px 24px;
+  align-items: baseline;
+  padding: 28px 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--linea-fuerte);
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+body.immersive .services-grid .card:last-child { border-bottom: 1px solid var(--linea-fuerte); }
+
+body.immersive .services-grid .card::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  background: var(--familia, var(--tinta));
+  box-shadow: inset 0 0 0 1px rgba(27, 31, 43, .12);
+  align-self: start;
+  margin-top: .45em;
+}
+
+body.immersive .services-grid .card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--t-h3);
+  font-weight: 500;
+}
+
+body.immersive .services-grid .card p {
+  margin: 0;
+  font-size: var(--t-16);
+  line-height: 1.6;
+  color: var(--tinta-2);
+  opacity: 1;
+}
+
+body.immersive .services-grid .card:hover,
+body.darkroom .services-grid .card:hover {
+  background: transparent;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 900px) {
+  body.immersive #servicios > .wrap,
+  body.immersive #faq > .wrap { grid-template-columns: 1fr; }
+
+  body.immersive #servicios .sec-head,
+  body.immersive #faq .sec-head { position: static; margin-bottom: var(--s-6); }
+
+  body.immersive .services-grid .card {
+    grid-template-columns: 14px 1fr;
+    padding: 22px 0;
+  }
+  body.immersive .services-grid .card p { grid-column: 2; }
+}
+
+/* ---------- Fotos para currículum ---------- */
+
+body.immersive #foto-cv .cv-grid {
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 0 var(--margen);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+
+body.immersive #foto-cv .cv-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--linea-fuerte);
+}
+
+body.immersive #foto-cv .cv-points li {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--linea-fuerte);
+}
+
+body.immersive #foto-cv .cv-points h3 {
+  font-size: var(--t-h3);
+  margin-bottom: 6px;
+}
+
+body.immersive #foto-cv .cv-points p {
+  font-size: var(--t-16);
+  line-height: 1.55;
+  margin: 0;
+  color: var(--tinta-2);
+}
+
+@media (max-width: 900px) {
+  body.immersive #foto-cv .cv-grid { grid-template-columns: 1fr; padding: 0 20px; }
+}
+
+/* ---------- Galería: impresiones en fila, sobre papel ---------- */
+
+body.immersive #galeria > .wrap { max-width: var(--ancho); }
+body.immersive #galeria .sec-head { margin-bottom: var(--s-4); }
+
+.gallery-hint {
+  display: block;
+  margin-top: var(--s-3);
+  font-size: var(--t-16);
+  color: var(--tinta-2);
+}
+
+body.immersive #galeria .gallery-grid {
+  columns: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 32px);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  padding: 36px var(--margen) 44px max(var(--margen), calc((100vw - var(--ancho)) / 2 + var(--margen)));
+  scroll-padding-left: max(var(--margen), calc((100vw - var(--ancho)) / 2 + var(--margen)));
+  scrollbar-width: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  --fl: 0px;
+  --fr: 96px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+}
+
+body.immersive #galeria .gallery-grid::-webkit-scrollbar { display: none; }
+body.immersive #galeria .gallery-grid.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+
+body.immersive #galeria .gallery-grid:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: -6px;
+}
+
+body.immersive #galeria .gallery-grid img {
+  flex: none;
+  width: auto;
+  max-width: none;
+  height: clamp(260px, 50vh, 520px);
+  margin: 0;
+  background: var(--impresion-borde);
+  padding: clamp(8px, 1vw, 12px);
+  object-fit: contain;
+  border-radius: 1px;
+  box-shadow: var(--sombra-impresion);
+  cursor: inherit;
+  scroll-snap-align: start;
+  -webkit-user-drag: none;
+  user-select: none;
+  transition: box-shadow .3s ease;
+}
+
+body.immersive #galeria .gallery-grid img:nth-child(even) { height: clamp(220px, 40vh, 420px); }
+
+body.immersive #galeria .gallery-grid img:hover {
+  transform: none;
+  box-shadow: 0 2px 4px rgba(23, 27, 38, .2), 0 22px 40px -16px rgba(23, 27, 38, .45);
+}
+
+body.immersive #galeria .gallery-grid img:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 4px;
+}
+
+.gal-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-top: 0;
+}
+
+.gal-btn {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--tinta);
+  background: transparent;
+  color: var(--tinta);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--rapido), color var(--rapido), opacity var(--rapido);
+}
+
+.gal-btn:not([aria-disabled="true"]):hover { background: var(--tinta); color: var(--papel); }
+.gal-btn[aria-disabled="true"] { opacity: .3; cursor: default; }
+
+.gal-count {
+  font-size: var(--t-16);
+  min-width: 4.5em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.gal-count b { font-weight: 600; }
+
+.gal-progress {
+  flex: none;
+  width: clamp(80px, 20vw, 220px);
+  height: 2px;
+  background: var(--linea-fuerte);
+  position: relative;
+  overflow: hidden;
+}
+
+.gal-progress i {
+  position: absolute;
+  inset: 0;
+  background: var(--tinta);
+  transform-origin: left;
+  transform: scaleX(var(--p, .1));
+  transition: transform .5s var(--ease-out);
+}
+
+/* ---------- Visor de foto grande (lo crea immersive.js) ---------- */
+
+body.lb-open { overflow: hidden; }
+
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  padding: 72px 16px 28px;
+  background: rgba(15, 18, 26, .94);
+  animation: lb-fade .35s var(--ease-out) both;
+}
+
+.lb[hidden] { display: none; }
+
+.lb img {
+  max-width: min(94vw, 1400px);
+  max-height: calc(100vh - 170px);
+  max-height: calc(100dvh - 170px);
+  width: auto;
+  height: auto;
+  background: var(--impresion-borde);
+  padding: 10px;
+  border-radius: 1px;
+  animation: lb-pop .45s var(--ease-out) both;
+}
+
+.lb-cap {
+  color: rgba(255, 255, 255, .85);
+  font-size: var(--t-16);
+  text-align: center;
+  max-width: 40em;
+}
+
+.lb-btn {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .4);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--rapido);
+}
+
+.lb-btn:hover { background: rgba(255, 255, 255, .22); }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev { left: 16px; top: 50%; margin-top: -24px; }
+.lb-next { right: 16px; top: 50%; margin-top: -24px; }
+
+@media (max-width: 700px) {
+  .lb-prev, .lb-next { top: auto; bottom: 20px; margin-top: 0; }
+  .lb-prev { left: calc(50% - 60px); }
+  .lb-next { right: calc(50% - 60px); }
+  .lb { padding-bottom: 92px; }
+  .lb-cap { display: none; }
+}
+
+@keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lb-pop { from { opacity: 0; scale: .96; } to { opacity: 1; scale: 1; } }
+
+/* ---------- Reseñas ---------- */
+
+body.immersive .reviews .wrap { max-width: var(--ancho); }
+
+body.immersive .reviews-grid,
+body.immersive .reviews-grid-1 {
+  max-width: none;
+  grid-template-columns: 1fr;
+  margin-bottom: 0;
+}
+
+body.immersive .review-card,
+body.darkroom .review-card {
+  background: transparent;
+  color: var(--tinta);
+  border: 0;
+  border-top: 1px solid var(--linea-fuerte);
+  border-radius: 0;
+  padding: var(--s-8) 0 0;
+  box-shadow: none;
+}
+
+body.immersive .review-card .stars {
+  color: var(--ambar-oscuro);
+  font-size: 22px;
+  letter-spacing: 3px;
+  margin-bottom: var(--s-4);
+}
+
+body.darkroom .review-card .stars { color: var(--ambar); }
+
+body.immersive .review-card p {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(32px, 5vw, 64px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  opacity: 1;
+  margin-bottom: var(--s-4);
+}
+
+body.immersive .review-name {
+  font-size: var(--t-16);
+  letter-spacing: 0;
+  color: var(--tinta-2);
+  opacity: 1;
+}
+
+body.immersive .google-badge,
+body.darkroom .google-badge {
+  margin-top: var(--s-12);
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 1px solid var(--linea);
+  border-radius: var(--r-panel);
+}
+
+.google-badge .gscore {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--accion);
+}
+
+.google-badge small a { color: var(--accion); font-weight: 600; }
+
+/* ---------- Preguntas frecuentes ---------- */
+
+body.immersive .faq-list { max-width: none; }
+
+body.immersive .faq-item,
+body.darkroom .faq-item {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--linea-fuerte);
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 22px 0;
+}
+
+body.immersive .faq-item:last-child { border-bottom: 1px solid var(--linea-fuerte); }
+body.immersive .faq-item[open] { border-color: var(--linea-fuerte); }
+
+body.immersive .faq-item summary {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.1vw, 26px);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  gap: var(--s-6);
+}
+
+body.immersive .faq-item summary::after {
+  font-family: var(--font-text);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--accion);
+}
+
+body.immersive .faq-item p {
+  font-size: var(--t-18);
+  line-height: var(--lh-text);
+  color: var(--tinta-2);
+  opacity: 1;
+  margin-top: var(--s-3);
+  max-width: var(--medida);
+}
+
+body.immersive .faq-item p a { color: var(--accion); }
+
+/* ---------- Contacto ---------- */
+
+body.immersive #contacto .contact-grid {
+  max-width: var(--ancho);
+  gap: clamp(32px, 6vw, 96px);
+}
+
+.info-row .ico { display: none; }
+
+.info-row {
+  padding-left: 18px;
+  border-left: 3px solid var(--linea-fuerte);
+}
+
+.info-row b {
+  font-family: var(--font-text);
+  font-size: var(--t-16);
+  color: var(--tinta-2);
+}
+
+.info-row span { font-size: var(--t-18); opacity: 1; }
+
+body.immersive .map-embed,
+body.darkroom .map-embed {
+  height: 260px;
+  margin-top: var(--s-2);
+  background: var(--impresion-borde);
+  padding: 8px;
+  border: 0;
+  border-radius: 1px;
+  box-shadow: var(--sombra-impresion);
+}
+
+body.darkroom .map-embed { filter: grayscale(.4) invert(.9) contrast(.9); }
+
+body.immersive #contactForm { gap: var(--s-4); }
+body.immersive #contactForm .btn { align-self: flex-start; }
+
+.contact-fallback,
+.member-box {
+  background: var(--superficie);
+  border: 1px dashed var(--linea-fuerte);
+  border-radius: var(--r-panel);
+}
+
+.contact-fallback-text {
+  background: var(--papel);
+  border-color: var(--linea);
+  color: var(--tinta);
+}
+
+/* ---------- Footer ---------- */
+
+body.immersive footer,
+footer {
+  background: var(--escenario);
+  color: var(--sobre-escenario);
+  padding-top: clamp(56px, 7vw, 96px);
+  border-top: 0;
+  border-image: none;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--tira);
+}
+
+body.immersive footer .wrap { max-width: var(--ancho); }
+
+body.immersive footer .logo-img,
+.footer-brand .logo-img {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  height: 34px;
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.footer-col b {
+  font-family: var(--font-text);
+  font-size: var(--t-14);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--sobre-escenario-2);
+  opacity: 1;
+}
+
+.footer-col a,
+.footer-col span {
+  color: var(--sobre-escenario);
+  opacity: 1;
+}
+
+.footer-col a:hover { color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px; }
+
+body.immersive .social-link,
+.social-link {
+  color: var(--sobre-escenario);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+}
+
+.footer-bottom { border-top-color: rgba(255, 255, 255, .14); }
+.footer-bottom p { color: var(--sobre-escenario-2); opacity: 1; }
+
+/* ==========================================================
+   7) CATÁLOGO Y CONFIGURADOR
+   ========================================================== */
+
+.cfg-title { font-weight: 600; }
+
+.subtitle {
+  font-size: var(--t-18);
+  color: var(--tinta-2);
+  opacity: 1;
+}
+
+body.immersive .cat-grid {
+  gap: 1px;
+  background: var(--linea-fuerte);
+  border: 1px solid var(--linea-fuerte);
+}
+
+body.immersive .cat-card {
+  position: relative;
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 0;
+  border-top: 6px solid var(--familia, var(--metal));
+  border-radius: 0;
+  box-shadow: none;
+  transition: background-color var(--rapido);
+}
+
+body.immersive .cat-card:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--fijador);
+}
+
+body.immersive .cat-card h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--t-24);
+}
+
+body.immersive .cat-card p { color: var(--tinta-2); opacity: 1; }
+
+/* El ícono es la muestra de color de la familia */
+body.immersive .cat-icon,
+body.immersive .cat-card .cat-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 0;
+  background: var(--familia, var(--metal));
+  font-size: 0;
+  margin-bottom: var(--s-6);
+}
+
+body.immersive .cat-tag,
+body.immersive .cat-card .cat-tag {
+  margin-top: var(--s-4);
+  font-size: var(--t-16);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--accion);
+}
+
+body.immersive .cat-c-gray .cat-tag { color: var(--tinta-2); }
+
+.cat-preview-link {
+  font-size: var(--t-16);
+  color: var(--accion);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-top: var(--s-3);
+}
+
+.cat-preview-link:hover { color: var(--accion-hover); }
+
+/* Pasos */
+.steps { border-bottom-color: var(--linea-fuerte); }
+.step { font-size: var(--t-16); opacity: .5; }
+.step.active { opacity: 1; border-color: var(--accion); }
+.step.done { opacity: .8; }
+.stepnum { font-size: var(--t-14); font-variant-numeric: tabular-nums; }
+.step.active .stepnum { background: var(--accion); border-color: var(--accion); color: var(--sobre-accion); }
+
+/* Tarjetas de opción */
+.opt-card {
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 1.5px solid var(--linea-fuerte);
+  border-radius: var(--r-control);
+  transition: border-color var(--rapido), background-color var(--rapido);
+}
+
+.opt-card:hover { border-color: var(--tinta); }
+.opt-card:active { transform: translateY(1px); }
+
+.opt-card.selected {
+  border-color: var(--accion);
+  background: color-mix(in srgb, var(--accion) 8%, var(--superficie));
+  box-shadow: inset 0 0 0 1.5px var(--accion);
+}
+
+.opt-card span { color: var(--tinta-2); opacity: 1; }
+
+.review-box {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--r-panel);
+}
+
+.review-row { border-bottom-color: var(--linea); }
+
+.qty-btn {
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 1.5px solid var(--linea-fuerte);
+  transition: border-color var(--rapido), color var(--rapido);
+}
+
+.qty-btn:hover { border-color: var(--accion); color: var(--accion); }
+.qty-value { font-variant-numeric: tabular-nums; }
+
+.member-row input { background: var(--superficie); border-color: var(--linea-fuerte); color: var(--tinta); }
+
+.frame-type-btn {
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 1.5px solid var(--linea-fuerte);
+  border-radius: var(--r-control);
+  font-size: var(--t-16);
+  transition: background-color var(--rapido), color var(--rapido), border-color var(--rapido);
+}
+
+.frame-type-btn.active {
+  background: var(--tinta);
+  border-color: var(--tinta);
+  color: var(--papel);
+}
+
+.upload-hint { font-size: var(--t-14); color: var(--tinta-2); }
+
+.postumas-examples { border-top-color: var(--linea); }
+
+#postumasExamplesGrid img {
+  background: var(--impresion-borde);
+  padding: 8px;
+  border-radius: 1px;
+  box-shadow: var(--sombra-impresion);
+}
+
+#postumasExamplesGrid img:hover { transform: none; }
+
+.wall-preview-stage { border-radius: var(--r-panel); }
+
+/* ==========================================================
+   8) FLOTANTES
+   ========================================================== */
+
+.promo-bubble,
+body.darkroom .promo-bubble {
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 1px solid var(--linea);
+  border-radius: var(--r-panel);
+  box-shadow: 0 12px 32px -12px rgba(23, 27, 38, .35);
+}
+
+.promo-bubble::after { background: var(--superficie); }
+
+.promo-bubble p { font-size: 15px; }
+
+.promo-bubble-btn {
+  background: var(--accion);
+  color: var(--sobre-accion);
+  border-radius: var(--r-control);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.promo-bubble-btn:hover { background: var(--accion-hover); }
+
+.whatsapp-float { box-shadow: 0 8px 20px -6px rgba(23, 27, 38, .45); }
+
+/* ==========================================================
+   9) PÁGINAS SECUNDARIAS (404, privacidad, términos)
+   ========================================================== */
+
+/* Sus enlaces ya usan var(--safelight), que ahora apunta al azul de acción */
+body:not(.immersive)::before {
+  content: '';
+  display: block;
+  height: 6px;
+  background: var(--tira);
+}
+
+/* ==========================================================
+   10) MENOS MOVIMIENTO
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg { transform: none !important; }
+  body.immersive .photo-card { animation: none; opacity: 1; }
+  body.immersive .photo-stack { transform: none !important; }
+  .lb, .lb img { animation: none !important; }
+  .btn, .opt-card { transform: none !important; }
+}

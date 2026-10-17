@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fotovista JCCastillo — Laboratorio Fotográfico en Juárez</title>
   <meta name="description"
-    content="Laboratorio fotográfico en Los Nogales, Juárez. Impresión fotográfica, fotos montadas en tablilla, cuadro, bastidor y fotos ID (credencial, pasaporte, diploma, título). Pide en línea por WhatsApp o correo.">
+    content="Laboratorio fotográfico en Los Nogales, Juárez. Impresión fotográfica, fotos montadas en tablilla, cuadro, bastidor y fotos ID (credencial, pasaporte, diploma, título), fotos para currículum y LinkedIn y pósters para fiestas. Pide en línea por WhatsApp o correo.">
   <link rel="canonical" href="https://fotovistajz.com/">
 
   <!-- Favicon / ícono del sitio. El logo original es un lockup de letras + ícono
@@ -49,6 +49,7 @@
     href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme.css">
 
   <!-- Datos estructurados para Google (JSON-LD). Usa los MISMOS datos que su
        ficha real de Google Business — nombre, dirección, teléfono y horario
@@ -104,7 +105,7 @@
   -->
 </head>
 
-<body>
+<body class="immersive">
 
   <div id="safelight-overlay"></div>
 
@@ -124,20 +125,22 @@
         <a href="#faq">FAQ</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <div style="display:flex; align-items:center; gap:14px;">
-        <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="header-tools">
+        <button type="button" class="safelight-toggle" id="safelightBtn" aria-pressed="false" aria-label="Modo cuarto oscuro"><span class="dot" aria-hidden="true"></span><span class="safelight-label">Cuarto oscuro</span></button>
+        <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span class="menu-label">Menú</span><span class="menu-lines" aria-hidden="true"></span></button>
       </div>
     </div>
   </header>
 
   <!-- ============ HERO ============ -->
   <section class="hero site-section">
+    <!-- Foto de fondo a pantalla completa: lab-1.webp (se cambia en theme.css, busca ".hero-bg") -->
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow">LABORATORIO FOTOGRAFICO EN CD. JUAREZ</span>
-        <h1>Tus recuerdos impresos con color y calidad.</h1>
-        <p>Impresión fotográfica, fotos para documentos diversos, restructuración fotográfica, impresión de gran
-          formato y enmarcado, son varios de nuestros productos.</p>
+        <span class="eyebrow">Laboratorio fotográfico en Ciudad Juárez</span>
+        <h1>Dale vida a tus fotos.</h1>
+        <p>No dejes tus recuerdos atrapados en una pantalla, ¡imprímelos!</p>
         <div class="btn-row">
           <a href="#" class="btn btn-primary" id="heroCatalogoBtn">Ver catálogo</a>
         </div>
@@ -158,17 +161,22 @@
           <img src="assets/fotos/hero-3.webp" alt="Trabajo de Fotovista, impresión 4×6" width="600" height="800">
           <span class="pc-tag">4×6</span>
         </div>
+        <span class="stack-note">Las tres impresiones, a escala entre sí.</span>
       </div>
+    </div>
+    <div class="hero-foot">
+      <span>Desde 1962, de revelado casero a laboratorio digital</span>
+      <a href="#nosotros">Conoce nuestra historia</a>
     </div>
   </section>
 
   <!-- ============ NOSOTROS ============ -->
-  <section class="about site-section dark-section" id="nosotros">
+  <section class="about site-section dark-section tone-light" id="nosotros">
     <div class="wrap about-grid">
       <img src="assets/fotos/srcastillo.webp" alt="Interior del laboratorio Fotovista" width="989" height="1420">
       <div>
-        <span class="sec-num">QUIÉNES SOMOS</span>
-        <h2 style="margin-bottom:20px;">Más de 60 años de experiencia fotográfica.</h2>
+        <span class="sec-num">Nosotros</span>
+        <h2>Más de 60 años de experiencia fotográfica.</h2>
         <p>Fotovista JCCastillo nace en 1962, cuando nuestro fundador, José Castillo, inició en Ciudad Juárez con
           el revelado casero en blanco y negro. Con los años, ese trabajo se convirtió en nuestro propio
           laboratorio — hoy completamente digital.</p>
@@ -189,37 +197,87 @@
   <section id="servicios" class="site-section">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">LO QUE HACEMOS</span>
         <h2>Servicios</h2>
         <p>Esto es lo que sí ofrecemos hoy — puedes pedirlo directo desde el catálogo.</p>
       </div>
       <div class="services-grid">
         <div class="card svc-blue">
-          <span class="card-num">01</span>
           <h3>Impresión fotográfica</h3>
           <p>Fotos sueltas o montadas en tablilla, en tamaños de 4×6 hasta 30×40.</p>
         </div>
         <div class="card svc-pink">
-          <span class="card-num">02</span>
           <h3>Cuadro y bastidor</h3>
           <p>Tu foto con marco (delgado o grueso) o en bastidor, lista para colgar.</p>
         </div>
-        <div class="card svc-amber">
-          <span class="card-num">03</span>
+        <div class="card svc-yellow">
           <h3>Fotos ID</h3>
-          <p>Credencial, pasaporte, diploma, título y más — la sesión se hace aquí en el local.</p>
+          <p>Credencial, pasaporte, diploma, título, currículum y LinkedIn — la sesión se hace aquí en el local.</p>
         </div>
-        <div class="card svc-pink">
-          <span class="card-num">04</span>
+        <div class="card svc-amber">
           <h3>Restauración de fotografías</h3>
           <p>Restaura con nosotros tus fotos antiguas.</p>
         </div>
         <div class="card svc-blue">
-          <span class="card-num">05</span>
           <h3>Convertimos negativos a formato digital</h3>
           <p>Escanea tus negativos viejos y llévatelos en digital, listos para imprimir o guardar.</p>
         </div>
+        <div class="card svc-pink">
+          <h3>Pósters para fiestas</h3>
+          <p>Letreros de bienvenida de gran formato para baby showers, XV años, bodas, cumpleaños y más.</p>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ FOTOS PARA CURRÍCULUM Y LINKEDIN ============
+       Anuncio del servicio de fotografía oficial (formato digital) para CV y
+       perfiles profesionales. Reutiliza el flujo de "Fotos ID" del catálogo:
+       el botón principal abre directo "Agenda tu foto ID" (openProductShortcut
+       ya tiene el caso 'fotosid'). El botón de WhatsApp lleva el mensaje
+       escrito en el href (mismo número que WHATSAPP_NUMBER en script.js).
+       Para poner una foto de ejemplo, agrega un <img> como en "Pósters". -->
+  <section class="products site-section dark-section" id="foto-cv">
+    <div class="wrap cv-grid">
+      <div>
+        <span class="sec-num">Fotos para currículum y LinkedIn</span>
+        <h2>Una buena foto abre puertas.</h2>
+        <p>Tu currículum y tu perfil de LinkedIn son lo primero que ve quien te va a contratar. Te tomamos una
+          fotografía oficial aquí en el local y te la entregamos lista para subirla o enviarla.</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-primary" onclick="openProductShortcut('fotosid')">Agendar mi foto</button>
+          <a href="https://wa.me/526565508492?text=Hola%2C%20quisiera%20agendar%20una%20foto%20para%20mi%20curr%C3%ADculum%20o%20LinkedIn.%20%C2%BFMe%20pueden%20dar%20informaci%C3%B3n%3F"
+            class="btn btn-ghost" target="_blank" rel="noopener">Preguntar por WhatsApp</a>
+        </div>
+      </div>
+      <ul class="cv-points">
+        <li><div><h3>Se toma aquí en el local</h3>
+            <p>Vienes al laboratorio y te la tomamos ahí mismo.</p></div></li>
+        <li><div><h3>En formato digital</h3>
+            <p>Para tu perfil de LinkedIn, bolsas de trabajo o para enviarla junto con tu currículum.</p></div></li>
+        <li><div><h3>También impresa</h3>
+            <p>Si la necesitas en papel, la imprimimos en el tamaño que pidas.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PÓSTERS PARA FIESTAS ============
+       Letreros de bienvenida de gran formato (baby shower, XV años, bodas...).
+       Todavía no hay flujo de pedido ni precios en el catálogo, así que el
+       único botón es WhatsApp con el mensaje en el href. -->
+  <section class="products site-section dark-section tone-light" id="posters">
+    <div class="wrap about-grid">
+      <div>
+        <span class="sec-num">Pósters para fiestas</span>
+        <h2>Dale la bienvenida a tu fiesta con un póster.</h2>
+        <p>Letreros de bienvenida de gran formato para baby showers, XV años, bodas, cumpleaños, graduaciones y más,
+          con los nombres y el tema de tu evento, listos para lucirse en un atril o en la pared.</p>
+        <p>Escríbenos con tu idea y te decimos cómo lo hacemos.</p>
+        <div class="btn-row">
+          <a href="https://wa.me/526565508492?text=Hola%2C%20quisiera%20informaci%C3%B3n%20para%20hacer%20un%20p%C3%B3ster%20de%20bienvenida%20para%20mi%20fiesta."
+            class="btn btn-primary" target="_blank" rel="noopener">Cotizar mi póster</a>
+        </div>
+      </div>
+      <img src="assets/fotos/lab-4.webp" alt="Póster de bienvenida para baby shower impreso en gran formato, sobre un atril dorado" width="1377" height="922" loading="lazy">
     </div>
   </section>
 
@@ -234,8 +292,8 @@
     <div class="wrap about-grid">
       <img src="assets/fotos/postuma 2.webp" alt="Ejemplo de homenaje póstumo enmarcado" width="900" height="1200">
       <div>
-        <span class="sec-num">HOMENAJE PÓSTUMO</span>
-        <h2 style="margin-bottom:20px;">Te acompañamos a honrar su memoria.</h2>
+        <span class="sec-num">Homenaje póstumo</span>
+        <h2>Te acompañamos a honrar su memoria.</h2>
         <p>Sabemos lo importante que es tener una imagen perfecta para recordar a un familiar. Te ayudamos
           de manera rápida con impresión al instante de ampliaciones listas para montaje, diseño de
           esquelas, y la edición o restauración de cualquier fotografía antigua o borrosa para que conserve
@@ -243,11 +301,11 @@
         <p>Impresiones al instante en tamaños estándar y ampliaciones, servicio express de montado,
           texturizado y marcos listos para el homenaje, y edición digital con restauración de fotos
           antiguas y corrección de color, cuidando siempre conservar sus facciones originales.</p>
-        <p>📍 Nos encuentras en C. 21 de Marzo #4930, Los Nogales, Ciudad Juárez.</p>
+        <p>Nos encuentras en C. 21 de Marzo #4930, Los Nogales, Ciudad Juárez.</p>
         <div class="btn-row">
           <button type="button" class="btn btn-primary" onclick="openProductShortcut('postumas')">Pedir mi
             homenaje póstumo</button>
-          <a href="#" id="homenajeWhatsappBtn" class="btn btn-ghost" target="_blank" rel="noopener">📱 Preguntar por
+          <a href="#" id="homenajeWhatsappBtn" class="btn btn-ghost" target="_blank" rel="noopener">Preguntar por
             WhatsApp</a>
         </div>
       </div>
@@ -262,13 +320,13 @@
        Impresiones (openProductShortcut ya hace eso) y el de WhatsApp manda
        un mensaje con contexto de fotógrafo — armado en script.js, busca
        "photogWhatsappBtn". -->
-  <section class="products site-section dark-section" id="para-fotografos">
+  <section class="products site-section dark-section tone-light" id="para-fotografos">
     <div class="wrap about-grid">
       <img src="assets/fotos/extra/extra-1.webp" alt="Impresora de gran formato en el laboratorio Fotovista"
         width="1600" height="1068">
       <div>
-        <span class="sec-num">PARA FOTÓGRAFOS</span>
-        <h2 style="margin-bottom:20px;">¿Eres fotógrafo? Imprime tu trabajo con nosotros.</h2>
+        <span class="sec-num">Para fotógrafos</span>
+        <h2>¿Eres fotógrafo? Imprime tu trabajo con nosotros.</h2>
         <p>Sesiones de estudio, bodas, XV años, retratos y más — con la calidad de impresión que tu
           trabajo se merece: gran formato, montajes, mosaicos y enmarcados, listos para portafolio,
           exposición o entrega a tus clientes.</p>
@@ -277,7 +335,7 @@
         <div class="btn-row">
           <button type="button" class="btn btn-primary" onclick="openProductShortcut('impresiones')">Pedir mis
             impresiones</button>
-          <a href="#" id="photogWhatsappBtn" class="btn btn-ghost" target="_blank" rel="noopener">📱 Preguntar por
+          <a href="#" id="photogWhatsappBtn" class="btn btn-ghost" target="_blank" rel="noopener">Preguntar por
             WhatsApp</a>
         </div>
       </div>
@@ -288,23 +346,31 @@
   <section id="galeria" class="site-section">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">NUESTRO TRABAJO</span>
         <h2>Galería</h2>
+        <span class="gallery-hint">Desliza hacia los lados para ver más.</span>
       </div>
       <div class="gallery-grid">
-        <img src="assets/fotos/1.webp" alt="Trabajo Fotovista 1" width="1920" height="1080">
-        <img src="assets/fotos/2.webp" alt="Trabajo Fotovista 2" width="1600" height="1200">
-        <img src="assets/fotos/3.webp" alt="Trabajo Fotovista 3" width="1200" height="1600">
-        <img src="assets/fotos/4.webp" alt="Trabajo Fotovista 4" width="742" height="1118">
+        <img src="assets/fotos/1.webp" alt="Equipo de Fotovista en el mostrador del laboratorio" width="1920" height="1080">
+        <img src="assets/fotos/producto-cuadro.webp" alt="Fotografías enmarcadas y en cuadro colgadas en la pared" width="900" height="900">
+        <img src="assets/fotos/2.webp" alt="Trabajando con la impresora fotográfica del laboratorio" width="1600" height="1200">
+        <img src="assets/fotos/galeria-6.webp" alt="Retrato de quinceañera impreso en gran formato" width="700" height="525">
+        <img src="assets/fotos/3.webp" alt="Revisando impresiones en el laboratorio" width="1200" height="1600">
+        <img src="assets/fotos/producto-bastidor.webp" alt="Fotografía en bastidor lista para colgar" width="900" height="900">
+        <img src="assets/fotos/4.webp" alt="Atención a un cliente en el laboratorio" width="742" height="1118">
+        <img src="assets/fotos/galeria-1-tall.webp" alt="Pared con muestras de fotografías de nuestros clientes" width="700" height="1050">
+        <img src="assets/fotos/lab-1.webp" alt="Mostrador y área de impresión del laboratorio, con papel picado de Día de Muertos" width="1378" height="917">
+        <img src="assets/fotos/lab-2.webp" alt="Logotipo de Fotovista en la pared del laboratorio, junto a las impresoras" width="1377" height="919">
+        <img src="assets/fotos/lab-3.webp" alt="Muro del laboratorio con retratos enmarcados y muestras de paquetes para graduaciones y confirmaciones" width="1378" height="915">
+        <img src="assets/fotos/lab-4.webp" alt="Letrero de bienvenida para baby shower impreso en gran formato sobre un atril" width="1377" height="922">
+        <img src="assets/fotos/lab-5.webp" alt="Homenaje póstumo enmarcado sobre un atril, listo para entregar" width="613" height="919">
       </div>
     </div>
   </section>
 
   <!-- ============ RESEÑAS ============ -->
-  <section class="reviews site-section dark-section" id="resenas">
+  <section class="reviews site-section dark-section tone-light" id="resenas">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">CLIENTES</span>
         <h2>Opiniones</h2>
       </div>
       <!-- GOOGLE-REVIEWS-WIDGET: si más adelante conectan un widget (Elfsight, SociableKit, etc.)
@@ -335,7 +401,6 @@
   <section id="faq" class="site-section">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-num">DUDAS COMUNES</span>
         <h2>Preguntas frecuentes</h2>
       </div>
       <div class="faq-list">
@@ -375,8 +440,7 @@
   <section id="contacto" class="site-section">
     <div class="wrap contact-grid">
       <div>
-        <span class="sec-num">VISÍTANOS</span>
-        <h2 style="font-size:34px; margin-bottom:24px;">Contacto</h2>
+        <h2>Contacto</h2>
         <div class="info-row">
           <div class="ico">📍</div>
           <div><b>Dirección</b><span>C. 21 de Marzo 4930, Los Nogales, 32350 Juárez, Chih.</span></div>
@@ -407,7 +471,7 @@
         <input type="text" id="contactName" placeholder="Tu nombre" required>
         <input type="email" id="contactEmail" placeholder="Tu correo" required>
         <textarea id="contactMessage" placeholder="Cuéntanos qué necesitas..." required></textarea>
-        <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">Enviar mensaje</button>
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
 
         <!-- Respaldo para cuando el "mailto:" no abre nada (muy común en celular,
              porque no todos tienen una app de correo configurada). Se muestra
@@ -419,10 +483,10 @@
             WhatsApp.</p>
           <pre id="contactFallbackText" class="contact-fallback-text"></pre>
           <div class="contact-fallback-actions">
-            <button type="button" id="contactFallbackCopy" class="btn btn-ghost">📋 Copiar mensaje</button>
-            <a id="contactFallbackWhatsapp" href="#" target="_blank" rel="noopener" class="btn btn-primary">📱 Mandar
+            <button type="button" id="contactFallbackCopy" class="btn btn-ghost">Copiar mensaje</button>
+            <a id="contactFallbackWhatsapp" href="#" target="_blank" rel="noopener" class="btn btn-primary">Mandar
               por WhatsApp</a>
-            <a id="contactFallbackMailto" href="#" class="btn btn-ghost">✉️ Reintentar por correo</a>
+            <a id="contactFallbackMailto" href="#" class="btn btn-ghost">Reintentar por correo</a>
           </div>
         </div>
       </form>
@@ -481,53 +545,52 @@
 
       <!-- CATALOG ROOT -->
       <section class="view active" id="view-catalog">
-        <span class="sec-num">CATÁLOGO</span>
+        <span class="sec-num">Catálogo</span>
         <h2 class="cfg-title">¿Qué quieres pedir hoy?</h2>
         <p class="subtitle">Elige una categoría, arma tu pedido y mándalo por WhatsApp o correo — ahí mismo
           nos mandas tus fotos y te confirmamos.</p>
         <div class="cat-grid">
           <div class="cat-card cat-c-blue" onclick="startImpresiones()">
-            <span class="cat-icon">🖨️</span>
+            <span class="cat-icon" aria-hidden="true"></span>
             <h3>Impresiones</h3>
             <p>Fotos sueltas o montadas en tablilla. Elige tamaño y cantidad.</p>
-            <span class="cat-tag">PEDIR →</span>
+            <span class="cat-tag">Pedir</span>
           </div>
           <div class="cat-card cat-c-pink" onclick="startCuadro()">
-            <span class="cat-icon">🖼️</span>
+            <span class="cat-icon" aria-hidden="true"></span>
             <h3>Cuadro</h3>
             <p>Foto con marco (delgado o grueso) o en bastidor, en varios tamaños.</p>
-            <span class="cat-tag">PEDIR →</span>
-            <button type="button" class="cat-preview-link" onclick="event.stopPropagation(); startWallPreview();">👀
-              Pruébalo en tu pared</button>
+            <span class="cat-tag">Pedir</span>
+            <button type="button" class="cat-preview-link" onclick="event.stopPropagation(); startWallPreview();">Pruébalo en tu pared</button>
           </div>
           <div class="cat-card cat-c-amber" onclick="startPostumas()">
-            <span class="cat-icon">🕯️</span>
+            <span class="cat-icon" aria-hidden="true"></span>
             <h3>Homenaje Póstumo</h3>
             <p>Esquelas con foto grande, en el tamaño que elijas. El diseño lo vemos contigo por WhatsApp.</p>
-            <span class="cat-tag">PEDIR →</span>
+            <span class="cat-tag">Pedir</span>
           </div>
           <div class="cat-card cat-c-yellow" onclick="startIdPhoto()">
-            <span class="cat-icon">🪪</span>
+            <span class="cat-icon" aria-hidden="true"></span>
             <h3>Fotos ID</h3>
             <p>Credencial, pasaporte, diploma, título y más. Se toman en el local.</p>
-            <span class="cat-tag">AGENDAR →</span>
+            <span class="cat-tag">Agendar</span>
           </div>
           <!-- PAQUETES — todavía no hay precios definidos, así que por ahora es
                solo un aviso + contacto directo (igual que Póstumas al principio).
                En cuanto la jefa defina los combos y precios, se arma con pasos
                de verdad como las demás categorías. -->
           <div class="cat-card cat-c-gray" onclick="startPaquetes()">
-            <span class="cat-icon">📦</span>
+            <span class="cat-icon" aria-hidden="true"></span>
             <h3>Paquetes</h3>
             <p>Combos armados para fotógrafos y clientes frecuentes.</p>
-            <span class="cat-tag">PRÓXIMAMENTE</span>
+            <span class="cat-tag">Próximamente</span>
           </div>
         </div>
       </section>
 
       <!-- IMPRESIONES CONFIGURATOR -->
       <section class="view" id="view-impresiones">
-        <span class="sec-num">IMPRESIONES</span>
+        <span class="sec-num">Impresiones</span>
         <h2 class="cfg-title">Manda tus fotos a imprimir</h2>
         <p class="subtitle">Cuatro pasos: acabado, tamaño, cantidad y confirmar.</p>
 
@@ -561,20 +624,20 @@
             <div class="member-feedback" id="impMemberFeedback"></div>
           </div>
           <div class="channel-row" id="impChannelRow" style="display:none;">
-            <button class="btn btn-primary" onclick="submitImpresiones('whatsapp')">📱 Pedir por WhatsApp</button>
-            <button class="btn btn-ghost" onclick="submitImpresiones('email')">✉️ Pedir por correo</button>
+            <button class="btn btn-primary" onclick="submitImpresiones('whatsapp')">Pedir por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitImpresiones('email')">Pedir por correo</button>
           </div>
         </div>
 
         <div class="nav-row" id="impNavRow">
-          <button class="btn btn-ghost" onclick="impresionesBack()">← Atrás</button>
+          <button class="btn btn-ghost" onclick="impresionesBack()">Atrás</button>
           <button class="btn btn-primary" id="impNextBtn" onclick="impresionesNext()" disabled>Continuar</button>
         </div>
       </section>
 
       <!-- CUADRO CONFIGURATOR -->
       <section class="view" id="view-cuadro">
-        <span class="sec-num">CUADRO</span>
+        <span class="sec-num">Cuadro</span>
         <h2 class="cfg-title">Pide tu cuadro o bastidor</h2>
         <p class="subtitle">Tres pasos: elige marco o bastidor, cantidad y confirmar.</p>
 
@@ -595,13 +658,13 @@
         <div class="fstep" data-istep="3" style="display:none;">
           <div class="review-box" id="cuadroReview"></div>
           <div class="channel-row" id="cuadroChannelRow" style="display:none;">
-            <button class="btn btn-primary" onclick="submitCuadro('whatsapp')">📱 Pedir por WhatsApp</button>
-            <button class="btn btn-ghost" onclick="submitCuadro('email')">✉️ Pedir por correo</button>
+            <button class="btn btn-primary" onclick="submitCuadro('whatsapp')">Pedir por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitCuadro('email')">Pedir por correo</button>
           </div>
         </div>
 
         <div class="nav-row" id="cuadroNavRow">
-          <button class="btn btn-ghost" onclick="cuadroBack()">← Atrás</button>
+          <button class="btn btn-ghost" onclick="cuadroBack()">Atrás</button>
           <button class="btn btn-primary" id="cuadroNextBtn" onclick="cuadroNext()" disabled>Continuar</button>
         </div>
       </section>
@@ -614,7 +677,7 @@
            vez que llega el pedido, por eso el paso 3 solo confirma
            paquete + tamaño y manda el mensaje. -->
       <section class="view" id="view-postumas">
-        <span class="sec-num">PÓSTUMAS</span>
+        <span class="sec-num">Póstumas</span>
         <h2 class="cfg-title">Homenaje póstumo</h2>
         <p class="subtitle">Tres pasos: elige tu paquete de esquelas, el tamaño de la foto grande y
           confirma. El diseño y los detalles los vemos contigo directo por WhatsApp o correo.</p>
@@ -640,13 +703,13 @@
           <p class="postumas-note">El diseño de la esquela (texto, estilo, fotos chicas) lo vemos contigo
             directo por WhatsApp o correo en cuanto nos escribas — aquí solo confirmas el paquete.</p>
           <div class="channel-row" id="postumasChannelRow" style="display:none;">
-            <button class="btn btn-primary" onclick="submitPostumas('whatsapp')">📱 Pedir por WhatsApp</button>
-            <button class="btn btn-ghost" onclick="submitPostumas('email')">✉️ Pedir por correo</button>
+            <button class="btn btn-primary" onclick="submitPostumas('whatsapp')">Pedir por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitPostumas('email')">Pedir por correo</button>
           </div>
         </div>
 
         <div class="nav-row" id="postumasNavRow">
-          <button class="btn btn-ghost" onclick="postumasBack()">← Atrás</button>
+          <button class="btn btn-ghost" onclick="postumasBack()">Atrás</button>
           <button class="btn btn-primary" id="postumasNextBtn" onclick="postumasNext()" disabled>Continuar</button>
         </div>
 
@@ -665,7 +728,7 @@
 
       <!-- FOTOS ID CONFIGURATOR (se toman en el local, no llevan "manda tus fotos") -->
       <section class="view" id="view-fotosid">
-        <span class="sec-num">FOTOS ID</span>
+        <span class="sec-num">Fotos ID</span>
         <h2 class="cfg-title">Agenda tu foto ID</h2>
         <p class="subtitle">Estas fotos se toman aquí en el local. Dos pasos: elige el tipo y agenda por
           WhatsApp o correo.</p>
@@ -682,13 +745,13 @@
         <div class="fstep" data-istep="2" style="display:none;">
           <div class="review-box" id="idPhotoReview"></div>
           <div class="channel-row" id="idPhotoChannelRow" style="display:none;">
-            <button class="btn btn-primary" onclick="submitIdPhoto('whatsapp')">📱 Agendar por WhatsApp</button>
-            <button class="btn btn-ghost" onclick="submitIdPhoto('email')">✉️ Agendar por correo</button>
+            <button class="btn btn-primary" onclick="submitIdPhoto('whatsapp')">Agendar por WhatsApp</button>
+            <button class="btn btn-ghost" onclick="submitIdPhoto('email')">Agendar por correo</button>
           </div>
         </div>
 
         <div class="nav-row" id="idPhotoNavRow">
-          <button class="btn btn-ghost" onclick="idPhotoBack()">← Atrás</button>
+          <button class="btn btn-ghost" onclick="idPhotoBack()">Atrás</button>
           <button class="btn btn-primary" id="idPhotoNextBtn" onclick="idPhotoNext()" disabled>Continuar</button>
         </div>
       </section>
@@ -698,18 +761,18 @@
            completo. En cuanto la jefa tenga los datos, se arma igual que las
            demás categorías (avísenme y le hago los pasos de elegir/confirmar). -->
       <section class="view" id="view-paquetes">
-        <span class="sec-num">PAQUETES</span>
+        <span class="sec-num">Paquetes</span>
         <h2 class="cfg-title">Paquetes</h2>
         <p class="subtitle">Estamos armando combos especiales para fotógrafos y clientes frecuentes —
           todavía no tenemos los precios definidos. Escríbenos directo y te avisamos en cuanto estén listos.</p>
 
         <div class="channel-row" style="display:flex;">
-          <button class="btn btn-primary" onclick="submitPaquetes('whatsapp')">📱 Preguntar por WhatsApp</button>
-          <button class="btn btn-ghost" onclick="submitPaquetes('email')">✉️ Preguntar por correo</button>
+          <button class="btn btn-primary" onclick="submitPaquetes('whatsapp')">Preguntar por WhatsApp</button>
+          <button class="btn btn-ghost" onclick="submitPaquetes('email')">Preguntar por correo</button>
         </div>
 
         <div class="nav-row">
-          <button class="btn btn-ghost" onclick="goToCatalog()">← Atrás</button>
+          <button class="btn btn-ghost" onclick="goToCatalog()">Atrás</button>
         </div>
       </section>
 
@@ -718,7 +781,7 @@
                pedido. Todo pasa en el navegador del cliente: la foto que sube nunca
                se manda a ningún lado, solo se muestra ahí mismo con FileReader. -->
       <section class="view" id="view-preview">
-        <span class="sec-num" id="previewSecNum">VISTA PREVIA</span>
+        <span class="sec-num" id="previewSecNum">Vista previa</span>
         <h2 class="cfg-title">Pruébalo antes de pedir</h2>
         <p class="subtitle">Sube una foto tuya y velo montado en la pared. Tu foto no se guarda ni se
           manda a ningún lado — solo se muestra aquí en tu pantalla.</p>
@@ -742,15 +805,14 @@
         </div>
 
         <div class="upload-row">
-          <label class="btn btn-primary" for="wallPreviewInput">📤 Subir mi foto</label>
+          <label class="btn btn-primary" for="wallPreviewInput">Subir mi foto</label>
           <input type="file" id="wallPreviewInput" accept="image/*" style="display:none;">
           <span class="upload-hint">JPG o PNG, no se guarda en ningún servidor</span>
         </div>
 
         <div class="nav-row">
-          <button class="btn btn-ghost" onclick="goToCatalog()">← Atrás</button>
-          <button class="btn btn-primary" id="wallPreviewOrderBtn" onclick="startCuadro()">Pedir este producto
-            →</button>
+          <button class="btn btn-ghost" onclick="goToCatalog()">Atrás</button>
+          <button class="btn btn-primary" id="wallPreviewOrderBtn" onclick="startCuadro()">Pedir este producto</button>
         </div>
       </section>
 
@@ -770,6 +832,7 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="immersive.js" defer></script>
 
   <!-- Botón flotante de WhatsApp: visible en toda la página para preguntas rápidas
          (se oculta solo mientras el catálogo está abierto, para no estorbar ahí).
@@ -789,7 +852,7 @@
          aparece/desaparece está en script.js (busca "PROMO BUBBLE"). -->
   <div id="promoBubble" class="promo-bubble">
     <button type="button" id="promoBubbleClose" class="promo-bubble-close" aria-label="Cerrar aviso">×</button>
-    <p>¿Te avisamos cuando haya promociones? 🎉</p>
+    <p>¿Te avisamos cuando haya promociones?</p>
     <a href="#" id="promoOptInBtn" class="promo-bubble-btn" target="_blank" rel="noopener">Sí, avísenme</a>
   </div>
 

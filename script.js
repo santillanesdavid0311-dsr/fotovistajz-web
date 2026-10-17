@@ -789,7 +789,7 @@ function initPhotoStackDrag() {
    nunca toca un servidor, ni el nuestro ni de nadie más.
    ============================================================ */
 function startWallPreview() {
-  document.getElementById('previewSecNum').textContent = 'CUADRO';
+  document.getElementById('previewSecNum').textContent = 'Cuadro';
   setWallFrameType('delgado'); // siempre arranca en "delgado"
   showView('view-preview');
 }
