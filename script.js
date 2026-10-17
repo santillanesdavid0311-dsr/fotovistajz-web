@@ -168,19 +168,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---------- PROMO BUBBLE ----------
-     La burbujita aparece sola, se esconde sola, y se repite cada cierto
-     tiempo — así no estorba todo el rato. Números que puedes ajustar:
-       FIRST_DELAY   = cuánto espera antes de aparecer la primera vez
+     La burbujita ya no aparece mientras el cliente lee la portada: espera
+     a que haya bajado buena parte de la página (señal de interés), sale un
+     momento, se esconde sola y se repite cada cierto tiempo. Números que
+     puedes ajustar:
+       SHOW_AT       = qué parte de la página tiene que haber bajado (0.5 = la mitad)
        VISIBLE_TIME  = cuánto tiempo se queda abierta cada vez que aparece
        REPEAT_EVERY  = cada cuánto vuelve a aparecer
      Si el cliente le da a la X, ya no vuelve a aparecer en esa visita. */
   const promoBubble = document.getElementById('promoBubble');
   const promoBubbleClose = document.getElementById('promoBubbleClose');
   if (promoBubble) {
-    const FIRST_DELAY = 8000;   // 8 segundos
-    const VISIBLE_TIME = 9000;  // se queda 9 segundos abierta
-    const REPEAT_EVERY = 60000; // y vuelve a aparecer cada 60 segundos
+    const SHOW_AT = 0.5;         // la mitad de la página
+    const VISIBLE_TIME = 9000;   // se queda 9 segundos abierta
+    const REPEAT_EVERY = 120000; // y vuelve a aparecer cada 2 minutos
     let promoTimer = null;
+    let cycle = null;
 
     function showPromoBubble() {
       // no la muestres si el cliente está dentro del catálogo en ese momento
@@ -189,14 +192,21 @@ document.addEventListener('DOMContentLoaded', () => {
       promoTimer = setTimeout(() => promoBubble.classList.remove('show'), VISIBLE_TIME);
     }
 
-    const cycle = setInterval(showPromoBubble, REPEAT_EVERY);
-    setTimeout(showPromoBubble, FIRST_DELAY);
+    function startPromoWhenInterested() {
+      const seen = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (seen < SHOW_AT) return;
+      window.removeEventListener('scroll', startPromoWhenInterested);
+      setTimeout(showPromoBubble, 1500);
+      cycle = setInterval(showPromoBubble, REPEAT_EVERY);
+    }
+    window.addEventListener('scroll', startPromoWhenInterested, { passive: true });
 
     if (promoBubbleClose) {
       promoBubbleClose.addEventListener('click', () => {
         promoBubble.classList.remove('show');
         clearTimeout(promoTimer);
         clearInterval(cycle); // ya no molesta más en esta visita
+        window.removeEventListener('scroll', startPromoWhenInterested);
       });
     }
   }

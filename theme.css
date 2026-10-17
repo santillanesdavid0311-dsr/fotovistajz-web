@@ -471,17 +471,6 @@ body.darkroom .dot {
   body.immersive nav #navProductos:hover { background: var(--accion-hover); }
 }
 
-@media (min-width: 901px) and (max-width: 1140px) {
-  .safelight-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
-}
-
 /* Botón "Menú" (celular) */
 body.immersive .menu-btn {
   align-items: center;
@@ -510,15 +499,6 @@ body.menu-open { overflow: hidden; }
 
 @media (max-width: 900px) {
   body.immersive .menu-btn { display: inline-flex; }
-
-  .safelight-label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
-  }
 
   /* Menú a pantalla completa, sobre papel */
   body.immersive nav,
@@ -722,6 +702,24 @@ body.immersive .hero p {
   opacity: 1;
 }
 
+body.immersive .hero .hero-facts {
+  font-size: var(--t-18);
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-top: calc(var(--s-6) * -1);
+  margin-bottom: var(--s-8);
+  max-width: none;
+}
+
+body.immersive .hero .btn-ghost {
+  font-size: var(--t-18);
+  padding: 16px 24px;
+  border-color: rgba(255, 255, 255, .7);
+  color: #FFFFFF;
+}
+
+body.immersive .hero .btn-ghost:hover { border-color: #FFFFFF; background: rgba(255, 255, 255, .1); }
+
 /* Sobre la foto oscura el botón principal va en blanco */
 body.immersive .hero .btn-primary {
   font-size: var(--t-18);
@@ -866,7 +864,7 @@ body.immersive .sec-head p {
 
 /* Fondos: claro predomina; Homenaje y footer son el escenario oscuro */
 body.immersive #nosotros,
-body.immersive #foto-cv,
+body.immersive #posters,
 body.immersive #para-fotografos,
 body.immersive #resenas,
 body.immersive #contacto {
@@ -876,7 +874,7 @@ body.immersive #contacto {
 }
 
 body.immersive #servicios,
-body.immersive #posters,
+body.immersive #foto-cv,
 body.immersive #galeria,
 body.immersive #faq {
   background: var(--papel);
@@ -937,8 +935,10 @@ body.immersive .about-grid > img {
   box-shadow: var(--sombra-impresion);
 }
 
+/* Las fotos alternan lado: Pósters a la derecha, Fotógrafos a la izquierda,
+   Homenaje a la derecha */
 body.immersive #posters .about-grid > img,
-body.immersive #para-fotografos .about-grid > img { order: 2; }
+body.immersive #homenaje .about-grid > img { order: 2; }
 
 /* Enlace a la página del servicio, bajo los botones de cada sección */
 .sec-more {
@@ -995,7 +995,7 @@ body.immersive .stat span {
   }
   body.immersive .about-grid > img,
   body.immersive #posters .about-grid > img,
-  body.immersive #para-fotografos .about-grid > img {
+  body.immersive #homenaje .about-grid > img {
     order: -1;
     max-height: 64vh;
   }
@@ -1410,6 +1410,54 @@ body.darkroom .google-badge {
 
 .google-badge small a { color: var(--accion); font-weight: 600; }
 
+/* Invitación a opinar en Google */
+body.immersive #resenas .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+}
+
+body.immersive #resenas .sec-head { margin-bottom: 0; }
+
+.rating-card {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--r-panel);
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.rating-score {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: var(--s-2);
+}
+
+.rating-score b {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(56px, 6vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--tinta);
+}
+
+.rating-score .stars {
+  font-size: 26px;
+  letter-spacing: 3px;
+  color: var(--ambar-oscuro);
+  margin: 0;
+}
+
+body.darkroom .rating-score .stars { color: var(--ambar); }
+
+.rating-card p { color: var(--tinta-2); margin-bottom: var(--s-6); }
+
+@media (max-width: 900px) {
+  body.immersive #resenas .wrap { grid-template-columns: 1fr; }
+}
+
 /* ---------- Preguntas frecuentes ---------- */
 
 body.immersive .faq-list { max-width: none; }
@@ -1579,6 +1627,22 @@ body.immersive .social-link,
 }
 
 .footer-bottom { border-top-color: rgba(255, 255, 255, .14); }
+
+/* El interruptor del cuarto oscuro vive en el footer, junto a Facebook */
+footer .social-row { align-items: center; flex-wrap: wrap; gap: 12px; }
+
+footer .safelight-toggle,
+body.darkroom footer .safelight-toggle {
+  color: var(--sobre-escenario);
+  border-color: rgba(255, 255, 255, .3);
+  font-size: var(--t-14);
+  min-height: 36px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+footer .safelight-toggle:hover { color: #FFFFFF; border-color: #FFFFFF; }
+
 .footer-bottom p { color: var(--sobre-escenario-2); opacity: 1; }
 
 /* ==========================================================
@@ -1614,6 +1678,12 @@ body.immersive .cat-card:hover {
   transform: none;
   box-shadow: none;
   background: var(--fijador);
+}
+
+body.immersive .cat-card:focus-visible,
+.opt-card:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
 }
 
 body.immersive .cat-card h3 {

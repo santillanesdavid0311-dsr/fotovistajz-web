@@ -46,7 +46,7 @@
   <!-- Solo 2 fuentes en todo el sitio: Playpen Sans (títulos h1/h2/h3) y
        Source Serif 4 (todo lo demás: texto, botones, menú, etiquetas). -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@500..600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
@@ -101,21 +101,8 @@
   }
   </script>
 
-  <!-- ============ GOOGLE ANALYTICS (GA4) ============
-       Listo para activar en cuanto David tenga su Measurement ID (algo como
-       "G-XXXXXXXXXX", se obtiene gratis en analytics.google.com creando una
-       propiedad para fotovistajz.com). Mientras no se reemplace el ID de abajo,
-       este bloque se queda comentado para no mandar datos falsos a una
-       propiedad que no existe.
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-  -->
+  <!-- Google Analytics: se activa poniendo el ID en medicion.js (ver instrucciones ahí) -->
+  <script src="medicion.js" defer></script>
 </head>
 
 <body class="immersive">
@@ -132,14 +119,12 @@
       <nav id="nav">
         <a href="#nosotros">Nosotros</a>
         <a href="#servicios">Servicios</a>
-        <a href="#" id="navProductos">Productos</a>
+        <a href="#" id="navProductos">Hacer pedido</a>
         <a href="#galeria">Galería</a>
-        <a href="#resenas">Reseñas</a>
-        <a href="#faq">FAQ</a>
+        <a href="#faq">Preguntas</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <div class="header-tools">
-        <button type="button" class="safelight-toggle" id="safelightBtn" aria-pressed="false" aria-label="Modo cuarto oscuro"><span class="dot" aria-hidden="true"></span><span class="safelight-label">Cuarto oscuro</span></button>
         <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav"><span class="menu-label">Menú</span><span class="menu-lines" aria-hidden="true"></span></button>
       </div>
     </div>
@@ -153,8 +138,10 @@
       <div>
         <h1><span class="eyebrow">Laboratorio fotográfico en Ciudad Juárez</span> Dale vida a tus fotos.</h1>
         <p>No dejes tus recuerdos atrapados en una pantalla, ¡imprímelos!</p>
+        <p class="hero-facts">Impresiones listas el mismo día, desde $8 por foto.</p>
         <div class="btn-row">
-          <a href="#" class="btn btn-primary" id="heroCatalogoBtn">Ver catálogo</a>
+          <a href="#" class="btn btn-primary" id="heroCatalogoBtn">Ver precios y pedir</a>
+          <a href="https://wa.me/526565508492?text=Hola%2C%20quisiera%20informaci%C3%B3n%20para%20imprimir%20mis%20fotos." class="btn btn-ghost" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
         </div>
       </div>
       <!-- Montón de fotos regadas, cada una con su medida real. Tienen animación
@@ -185,7 +172,7 @@
   <!-- ============ NOSOTROS ============ -->
   <section class="about site-section dark-section tone-light" id="nosotros">
     <div class="wrap about-grid">
-      <img src="assets/fotos/srcastillo.webp" alt="José Castillo, fundador de Fotovista, trabajando en el laboratorio" width="1047" height="1503">
+      <img loading="lazy" decoding="async" src="assets/fotos/srcastillo.webp" alt="José Castillo, fundador de Fotovista, trabajando en el laboratorio" width="1047" height="1503">
       <div>
         <span class="sec-num">Nosotros</span>
         <h2>Más de 60 años de experiencia fotográfica.</h2>
@@ -210,7 +197,7 @@
     <div class="wrap">
       <div class="sec-head">
         <h2>Servicios</h2>
-        <p>Esto es lo que sí ofrecemos hoy — puedes pedirlo directo desde el catálogo.</p>
+        <p>Todo esto lo puedes pedir hoy desde el catálogo o por WhatsApp. Impresiones, cuadros y bastidores quedan listos el mismo día.</p>
       </div>
       <div class="services-grid">
         <div class="card svc-blue">
@@ -227,7 +214,7 @@
         </div>
         <div class="card svc-amber">
           <h3><a href="restauracion-de-fotos.html">Restauración de fotografías</a></h3>
-          <p>Restaura con nosotros tus fotos antiguas.</p>
+          <p>Recuperamos fotos antiguas, dañadas o borrosas para que las vuelvas a imprimir o guardar.</p>
         </div>
         <div class="card svc-blue">
           <h3><a href="restauracion-de-fotos.html">Convertimos negativos a formato digital</a></h3>
@@ -238,6 +225,28 @@
           <p>Letreros de bienvenida de gran formato para baby showers, XV años, bodas, cumpleaños y más.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ PÓSTERS PARA FIESTAS ============
+       Letreros de bienvenida de gran formato (baby shower, XV años, bodas...).
+       Todavía no hay flujo de pedido ni precios en el catálogo, así que el
+       único botón es WhatsApp con el mensaje en el href. -->
+  <section class="products site-section dark-section tone-light" id="posters">
+    <div class="wrap about-grid">
+      <div>
+        <span class="sec-num">Pósters para fiestas</span>
+        <h2>Dale la bienvenida a tu fiesta con un póster.</h2>
+        <p>Letreros de bienvenida de gran formato para baby showers, XV años, bodas, cumpleaños, graduaciones y más,
+          con los nombres y el tema de tu evento, listos para lucirse en un atril o en la pared.</p>
+        <p>Escríbenos con tu idea y te decimos cómo lo hacemos.</p>
+        <div class="btn-row">
+          <a href="https://wa.me/526565508492?text=Hola%2C%20quisiera%20informaci%C3%B3n%20para%20hacer%20un%20p%C3%B3ster%20de%20bienvenida%20para%20mi%20fiesta."
+            class="btn btn-primary" target="_blank" rel="noopener">Cotizar mi póster</a>
+        </div>
+        <a class="sec-more" href="posters-para-fiestas.html">Más sobre los pósters para fiestas</a>
+      </div>
+      <img src="assets/fotos/lab-4.webp" alt="Póster de bienvenida para baby shower impreso en gran formato, sobre un atril dorado" width="1377" height="922" loading="lazy">
     </div>
   </section>
 
@@ -273,25 +282,34 @@
     </div>
   </section>
 
-  <!-- ============ PÓSTERS PARA FIESTAS ============
-       Letreros de bienvenida de gran formato (baby shower, XV años, bodas...).
-       Todavía no hay flujo de pedido ni precios en el catálogo, así que el
-       único botón es WhatsApp con el mensaje en el href. -->
-  <section class="products site-section dark-section tone-light" id="posters">
+  <!-- ============ PARA FOTÓGRAFOS ============
+       Anuncio dirigido a fotógrafos profesionales para que impriman su
+       trabajo (sesiones, bodas, portafolios) con nosotros. Reutiliza el
+       mismo layout de imagen + texto de la sección de Nosotros (clase
+       "about-grid"). El botón principal abre el catálogo directo en
+       Impresiones (openProductShortcut ya hace eso) y el de WhatsApp manda
+       un mensaje con contexto de fotógrafo — armado en script.js, busca
+       "photogWhatsappBtn". -->
+  <section class="products site-section dark-section tone-light" id="para-fotografos">
     <div class="wrap about-grid">
+      <img loading="lazy" decoding="async" src="assets/fotos/extra/extra-1.webp" alt="Impresora de gran formato en el laboratorio Fotovista"
+        width="978" height="722">
       <div>
-        <span class="sec-num">Pósters para fiestas</span>
-        <h2>Dale la bienvenida a tu fiesta con un póster.</h2>
-        <p>Letreros de bienvenida de gran formato para baby showers, XV años, bodas, cumpleaños, graduaciones y más,
-          con los nombres y el tema de tu evento, listos para lucirse en un atril o en la pared.</p>
-        <p>Escríbenos con tu idea y te decimos cómo lo hacemos.</p>
+        <span class="sec-num">Para fotógrafos</span>
+        <h2>¿Eres fotógrafo? Imprime tu trabajo con nosotros.</h2>
+        <p>Sesiones de estudio, bodas, XV años, retratos y más — con la calidad de impresión que tu
+          trabajo se merece: gran formato, montajes, mosaicos y enmarcados, listos para portafolio,
+          exposición o entrega a tus clientes.</p>
+        <p>Si tienes tu código de fotógrafo, aplícalo directo al hacer tu pedido de impresiones y obtén
+          precio especial.</p>
         <div class="btn-row">
-          <a href="https://wa.me/526565508492?text=Hola%2C%20quisiera%20informaci%C3%B3n%20para%20hacer%20un%20p%C3%B3ster%20de%20bienvenida%20para%20mi%20fiesta."
-            class="btn btn-primary" target="_blank" rel="noopener">Cotizar mi póster</a>
+          <button type="button" class="btn btn-primary" onclick="openProductShortcut('impresiones')">Pedir mis
+            impresiones</button>
+          <a href="#" id="photogWhatsappBtn" class="btn btn-ghost" target="_blank" rel="noopener">Preguntar por
+            WhatsApp</a>
         </div>
-        <a class="sec-more" href="posters-para-fiestas.html">Más sobre los pósters para fiestas</a>
+        <a class="sec-more" href="impresion-de-fotos.html">Tamaños y precios de impresión</a>
       </div>
-      <img src="assets/fotos/lab-4.webp" alt="Póster de bienvenida para baby shower impreso en gran formato, sobre un atril dorado" width="1377" height="922" loading="lazy">
     </div>
   </section>
 
@@ -304,7 +322,7 @@
        armado en script.js, busca "homenajeWhatsappBtn". -->
   <section class="products site-section dark-section" id="homenaje">
     <div class="wrap about-grid">
-      <img src="assets/fotos/postuma 2.webp" alt="Ejemplo de homenaje póstumo enmarcado" width="900" height="1200">
+      <img loading="lazy" decoding="async" src="assets/fotos/postuma 2.webp" alt="Ejemplo de homenaje póstumo enmarcado" width="900" height="1200">
       <div>
         <span class="sec-num">Homenaje póstumo</span>
         <h2>Te acompañamos a honrar su memoria.</h2>
@@ -327,37 +345,6 @@
     </div>
   </section>
 
-  <!-- ============ PARA FOTÓGRAFOS ============
-       Anuncio dirigido a fotógrafos profesionales para que impriman su
-       trabajo (sesiones, bodas, portafolios) con nosotros. Reutiliza el
-       mismo layout de imagen + texto de la sección de Nosotros (clase
-       "about-grid"). El botón principal abre el catálogo directo en
-       Impresiones (openProductShortcut ya hace eso) y el de WhatsApp manda
-       un mensaje con contexto de fotógrafo — armado en script.js, busca
-       "photogWhatsappBtn". -->
-  <section class="products site-section dark-section tone-light" id="para-fotografos">
-    <div class="wrap about-grid">
-      <img src="assets/fotos/extra/extra-1.webp" alt="Impresora de gran formato en el laboratorio Fotovista"
-        width="978" height="722">
-      <div>
-        <span class="sec-num">Para fotógrafos</span>
-        <h2>¿Eres fotógrafo? Imprime tu trabajo con nosotros.</h2>
-        <p>Sesiones de estudio, bodas, XV años, retratos y más — con la calidad de impresión que tu
-          trabajo se merece: gran formato, montajes, mosaicos y enmarcados, listos para portafolio,
-          exposición o entrega a tus clientes.</p>
-        <p>Si tienes tu código de fotógrafo, aplícalo directo al hacer tu pedido de impresiones y obtén
-          precio especial.</p>
-        <div class="btn-row">
-          <button type="button" class="btn btn-primary" onclick="openProductShortcut('impresiones')">Pedir mis
-            impresiones</button>
-          <a href="#" id="photogWhatsappBtn" class="btn btn-ghost" target="_blank" rel="noopener">Preguntar por
-            WhatsApp</a>
-        </div>
-        <a class="sec-more" href="impresion-de-fotos.html">Tamaños y precios de impresión</a>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ GALERÍA ============ -->
   <section id="galeria" class="site-section">
     <div class="wrap">
@@ -366,19 +353,19 @@
         <span class="gallery-hint">Desliza hacia los lados para ver más.</span>
       </div>
       <div class="gallery-grid">
-        <img src="assets/fotos/1.webp" alt="Equipo de Fotovista en el mostrador del laboratorio" width="1920" height="1080">
-        <img src="assets/fotos/producto-cuadro.webp" alt="Fotografías enmarcadas y en cuadro colgadas en la pared" width="900" height="900">
-        <img src="assets/fotos/2.webp" alt="Trabajando con la impresora fotográfica del laboratorio" width="1600" height="1200">
-        <img src="assets/fotos/galeria-6.webp" alt="Retrato de quinceañera impreso en gran formato" width="700" height="525">
-        <img src="assets/fotos/3.webp" alt="Revisando impresiones en el laboratorio" width="1200" height="1600">
-        <img src="assets/fotos/producto-bastidor.webp" alt="Fotografía en bastidor lista para colgar" width="900" height="900">
-        <img src="assets/fotos/4.webp" alt="Atención a un cliente en el laboratorio" width="742" height="1118">
-        <img src="assets/fotos/galeria-1-tall.webp" alt="Pared con muestras de fotografías de nuestros clientes" width="700" height="1050">
-        <img src="assets/fotos/lab-1.webp" alt="Mostrador y área de impresión del laboratorio, con papel picado de Día de Muertos" width="1378" height="917">
-        <img src="assets/fotos/lab-2.webp" alt="Logotipo de Fotovista en la pared del laboratorio, junto a las impresoras" width="1377" height="919">
-        <img src="assets/fotos/lab-3.webp" alt="Muro del laboratorio con retratos enmarcados y muestras de paquetes para graduaciones y confirmaciones" width="1378" height="915">
-        <img src="assets/fotos/lab-4.webp" alt="Letrero de bienvenida para baby shower impreso en gran formato sobre un atril" width="1377" height="922">
-        <img src="assets/fotos/lab-5.webp" alt="Homenaje póstumo enmarcado sobre un atril, listo para entregar" width="613" height="919">
+        <img loading="lazy" decoding="async" src="assets/fotos/1.webp" alt="Equipo de Fotovista en el mostrador del laboratorio" width="1920" height="1080">
+        <img loading="lazy" decoding="async" src="assets/fotos/producto-cuadro.webp" alt="Fotografías enmarcadas y en cuadro colgadas en la pared" width="900" height="900">
+        <img loading="lazy" decoding="async" src="assets/fotos/2.webp" alt="Trabajando con la impresora fotográfica del laboratorio" width="1600" height="1200">
+        <img loading="lazy" decoding="async" src="assets/fotos/galeria-6.webp" alt="Retrato de quinceañera impreso en gran formato" width="700" height="525">
+        <img loading="lazy" decoding="async" src="assets/fotos/3.webp" alt="Revisando impresiones en el laboratorio" width="1200" height="1600">
+        <img loading="lazy" decoding="async" src="assets/fotos/producto-bastidor.webp" alt="Fotografía en bastidor lista para colgar" width="900" height="900">
+        <img loading="lazy" decoding="async" src="assets/fotos/4.webp" alt="Atención a un cliente en el laboratorio" width="742" height="1118">
+        <img loading="lazy" decoding="async" src="assets/fotos/galeria-1-tall.webp" alt="Pared con muestras de fotografías de nuestros clientes" width="700" height="1050">
+        <img loading="lazy" decoding="async" src="assets/fotos/lab-1.webp" alt="Mostrador y área de impresión del laboratorio, con papel picado de Día de Muertos" width="1378" height="917">
+        <img loading="lazy" decoding="async" src="assets/fotos/lab-2.webp" alt="Logotipo de Fotovista en la pared del laboratorio, junto a las impresoras" width="1377" height="919">
+        <img loading="lazy" decoding="async" src="assets/fotos/lab-3.webp" alt="Muro del laboratorio con retratos enmarcados y muestras de paquetes para graduaciones y confirmaciones" width="1378" height="915">
+        <img loading="lazy" decoding="async" src="assets/fotos/lab-4.webp" alt="Letrero de bienvenida para baby shower impreso en gran formato sobre un atril" width="1377" height="922">
+        <img loading="lazy" decoding="async" src="assets/fotos/lab-5.webp" alt="Homenaje póstumo enmarcado sobre un atril, listo para entregar" width="613" height="919">
       </div>
     </div>
   </section>
@@ -387,25 +374,18 @@
   <section class="reviews site-section dark-section tone-light" id="resenas">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Opiniones</h2>
+        <h2>Opiniones en Google</h2>
+        <p>¿Ya nos visitaste? Tu opinión ayuda a que más familias de Juárez nos encuentren.</p>
       </div>
       <!-- GOOGLE-REVIEWS-WIDGET: si más adelante conectan un widget (Elfsight, SociableKit, etc.)
            conectado al Place ID de Fotovista, pegar aquí el código que dé el proveedor y borrar
            el .reviews-grid de abajo. -->
-      <div class="reviews-grid reviews-grid-1">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p>"It's very nice."</p>
-          <div class="review-name">— Reseña real en Google</div>
-        </div>
-      </div>
-      <div class="google-badge">
-        <div class="gscore">5.0</div>
-        <div>
-          <b style="font-size:15px;">Google Reviews</b>
-          <small>1 reseña verificada — <a
-              href="https://www.google.com/maps/search/?api=1&amp;query=Fotovista&amp;query_place_id=ChIJgVFO0Zlf54YR9XI2x5h827Y"
-              target="_blank" rel="noopener">ver en Google Maps</a></small>
+      <div class="rating-card">
+        <div class="rating-score"><b>5.0</b><span class="stars" aria-hidden="true">★★★★★</span></div>
+        <p>Calificación de nuestros clientes en Google.</p>
+        <div class="btn-row">
+          <a href="https://search.google.com/local/writereview?placeid=ChIJgVFO0Zlf54YR9XI2x5h827Y" class="btn btn-primary" target="_blank" rel="noopener">Dejar mi opinión</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=Fotovista&amp;query_place_id=ChIJgVFO0Zlf54YR9XI2x5h827Y" class="btn btn-ghost" target="_blank" rel="noopener">Ver en Google Maps</a>
         </div>
       </div>
     </div>
@@ -512,11 +492,12 @@
   <footer class="site-section">
     <div class="wrap footer-grid">
       <div class="footer-brand">
-        <div class="logo"><img src="assets/logo.webp" alt="Fotovista JCCastillo" class="logo-img" width="2073"
+        <div class="logo"><img loading="lazy" decoding="async" src="assets/logo.webp" alt="Fotovista JCCastillo" class="logo-img" width="2073"
             height="687"></div>
         <!-- Si más adelante tienen Instagram o TikTok, agrega otro <a class="social-link">
              igual al de abajo, con su propio emoji o SVG. -->
         <div class="social-row">
+          <button type="button" class="safelight-toggle" id="safelightBtn" aria-pressed="false" aria-label="Modo cuarto oscuro"><span class="dot" aria-hidden="true"></span><span class="safelight-label">Modo cuarto oscuro</span></button>
           <a class="social-link" href="https://www.facebook.com/profile.php?id=61593201084522" target="_blank"
             rel="noopener" aria-label="Facebook de Fotovista">
             <!-- Ícono de Facebook como SVG en vez de emoji (📘), porque en varios
@@ -533,7 +514,7 @@
         <b>Enlaces</b>
         <a href="#nosotros">Nosotros</a>
         <a href="#servicios">Servicios</a>
-        <a href="#" id="footerProductos">Productos</a>
+        <a href="#" id="footerProductos">Hacer pedido</a>
         <a href="#galeria">Galería</a>
         <a href="#contacto">Contacto</a>
       </div>
@@ -575,26 +556,26 @@
         <p class="subtitle">Elige una categoría, arma tu pedido y mándalo por WhatsApp o correo — ahí mismo
           nos mandas tus fotos y te confirmamos.</p>
         <div class="cat-grid">
-          <div class="cat-card cat-c-blue" onclick="startImpresiones()">
+          <div class="cat-card cat-c-blue" role="button" tabindex="0" onclick="startImpresiones()">
             <span class="cat-icon" aria-hidden="true"></span>
             <h3>Impresiones</h3>
             <p>Fotos sueltas o montadas en tablilla. Elige tamaño y cantidad.</p>
             <span class="cat-tag">Pedir</span>
           </div>
-          <div class="cat-card cat-c-pink" onclick="startCuadro()">
+          <div class="cat-card cat-c-pink" role="button" tabindex="0" onclick="startCuadro()">
             <span class="cat-icon" aria-hidden="true"></span>
             <h3>Cuadro</h3>
             <p>Foto con marco (delgado o grueso) o en bastidor, en varios tamaños.</p>
             <span class="cat-tag">Pedir</span>
             <button type="button" class="cat-preview-link" onclick="event.stopPropagation(); startWallPreview();">Pruébalo en tu pared</button>
           </div>
-          <div class="cat-card cat-c-amber" onclick="startPostumas()">
+          <div class="cat-card cat-c-amber" role="button" tabindex="0" onclick="startPostumas()">
             <span class="cat-icon" aria-hidden="true"></span>
             <h3>Homenaje Póstumo</h3>
             <p>Esquelas con foto grande, en el tamaño que elijas. El diseño lo vemos contigo por WhatsApp.</p>
             <span class="cat-tag">Pedir</span>
           </div>
-          <div class="cat-card cat-c-yellow" onclick="startIdPhoto()">
+          <div class="cat-card cat-c-yellow" role="button" tabindex="0" onclick="startIdPhoto()">
             <span class="cat-icon" aria-hidden="true"></span>
             <h3>Fotos ID</h3>
             <p>Credencial, pasaporte, diploma, título y más. Se toman en el local.</p>
@@ -604,7 +585,7 @@
                solo un aviso + contacto directo (igual que Póstumas al principio).
                En cuanto la jefa defina los combos y precios, se arma con pasos
                de verdad como las demás categorías. -->
-          <div class="cat-card cat-c-gray" onclick="startPaquetes()">
+          <div class="cat-card cat-c-gray" role="button" tabindex="0" onclick="startPaquetes()">
             <span class="cat-icon" aria-hidden="true"></span>
             <h3>Paquetes</h3>
             <p>Combos armados para fotógrafos y clientes frecuentes.</p>
@@ -743,10 +724,10 @@
         <div class="postumas-examples">
           <h3 class="postumas-examples-title">Ejemplos de nuestros trabajos</h3>
           <div class="gallery-grid" id="postumasExamplesGrid">
-            <img src="assets/fotos/postuma 1.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
-            <img src="assets/fotos/postuma 2.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
-            <img src="assets/fotos/postuma 3.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
-            <img src="assets/fotos/postuma 4.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
+            <img loading="lazy" decoding="async" src="assets/fotos/postuma 1.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
+            <img loading="lazy" decoding="async" src="assets/fotos/postuma 2.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
+            <img loading="lazy" decoding="async" src="assets/fotos/postuma 3.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
+            <img loading="lazy" decoding="async" src="assets/fotos/postuma 4.webp" alt="Ejemplo de homenaje póstumo" width="900" height="1200">
           </div>
         </div>
       </section>
@@ -813,7 +794,7 @@
 
         <div class="wall-preview-stage" id="wallPreviewStage">
           <div class="wall-frame" id="wallFrame">
-            <img id="wallFrameImg" alt="Tu foto en el marco" style="display:none;">
+            <img loading="lazy" decoding="async" id="wallFrameImg" alt="Tu foto en el marco" style="display:none;">
             <span class="wall-frame-placeholder" id="wallFramePlaceholder">Tu foto aparece aquí</span>
           </div>
         </div>

@@ -331,6 +331,44 @@
   }
   syncDarkroom();
 
+  /* ---------- 7) Catálogo usable con teclado ----------
+     Las tarjetas del catálogo y las opciones de cada paso son <div> con
+     onclick (script.js las arma así). Aquí solo se les da foco con Tab y
+     se "pican" con Enter o Espacio; el onclick sigue haciendo lo mismo. */
+  var overlay = document.getElementById('catalogOverlay');
+
+  function makeFocusable(root) {
+    var cards = root.querySelectorAll('.opt-card:not([tabindex])');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].setAttribute('tabindex', '0');
+      cards[i].setAttribute('role', 'button');
+      cards[i].setAttribute('aria-pressed', cards[i].classList.contains('selected') ? 'true' : 'false');
+    }
+  }
+
+  if (overlay) {
+    makeFocusable(overlay);
+    if ('MutationObserver' in window) {
+      new MutationObserver(function () { makeFocusable(overlay); })
+        .observe(overlay, { childList: true, subtree: true });
+    }
+
+    overlay.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      var card = e.target.closest ? e.target.closest('.cat-card[role="button"], .opt-card[role="button"]') : null;
+      if (!card || card !== e.target) return;
+      e.preventDefault();
+      var grid = card.parentNode;
+      var index = Array.prototype.indexOf.call(grid.children, card);
+      card.click();
+      /* script.js vuelve a dibujar las opciones al elegir una: el foco se
+         queda en la misma opción para poder seguir con el teclado */
+      makeFocusable(grid);
+      var again = grid.children[index];
+      if (again && again !== card && again.focus) again.focus();
+    });
+  }
+
   /* ---------- 5) Las fotos del hero se inclinan un poco con el mouse ---------- */
   var stack = document.getElementById('photoStack');
   var heroEl = document.querySelector('.hero');
