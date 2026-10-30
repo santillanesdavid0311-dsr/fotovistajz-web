@@ -298,6 +298,16 @@ function hashForCatalogView(id) {
   return slug ? `#catalogo/${slug}` : '#catalogo';
 }
 
+// Función que arma cada categoría (la misma que usan las tarjetas del catálogo)
+const CATALOG_STARTERS = {
+  'view-impresiones': () => startImpresiones(),
+  'view-cuadro': () => startCuadro(),
+  'view-postumas': () => startPostumas(),
+  'view-fotosid': () => startIdPhoto(),
+  'view-paquetes': () => startPaquetes(),
+  'view-preview': () => startWallPreview()
+};
+
 // true mientras aplicamos una ruta desde la URL (carga inicial o botón
 // atrás/adelante), para no volver a empujar esa misma ruta al historial
 let suppressHashUpdate = false;
@@ -309,7 +319,14 @@ function applyCatalogHashRoute() {
     const slug = hash.replace('#catalogo', '').replace(/^\//, '');
     const viewId = CATALOG_SLUGS[slug] || 'view-catalog';
     openCatalogOverlay();
-    showView(viewId);
+    // Si la categoría todavía no se ha armado en esta visita (por ejemplo,
+    // alguien llega desde impresion-de-fotos.html con "#catalogo/impresiones"),
+    // hay que dibujar sus opciones como si hubiera picado la tarjeta. Si ya
+    // estaba armada (botón atrás/adelante), se muestra tal cual quedó.
+    const start = CATALOG_STARTERS[viewId];
+    const yaArmada = document.querySelector('#' + viewId + ' .opt-card');
+    if (start && !yaArmada) start();
+    else showView(viewId);
   } else if (document.body.classList.contains('catalog-mode')) {
     closeCatalogOverlay();
   }
@@ -364,11 +381,11 @@ const cuadroOptions = [
 // WhatsApp"), por eso su flujo es más corto — solo elegir tipo y agendar.
 // "desc" es la cantidad de fotos que incluye esa sesión.
 const idPhotoTypes = [
-  { id: 'infantil', label: 'Infantil', desc: '9 fotos', price: 100 },
+  { id: 'infantil', label: 'Tamaño infantil', desc: '9 fotos', price: 100 },
   { id: 'credencial', label: 'Credencial', desc: '4 fotos', price: 100 },
   { id: 'credencial-ovalada', label: 'Credencial ovalada', desc: '4 fotos', price: 120 },
   { id: 'pasaporte', label: 'Pasaporte mexicano', desc: '4 fotos', price: 120 },
-  { id: 'visa-laser', label: 'Visa láser', desc: '2 fotos', price: 150 },
+  { id: 'visa-laser', label: 'Visa americana (láser)', desc: '2 fotos', price: 150 },
   { id: 'diploma', label: 'Diploma', desc: '2 fotos', price: 150 },
   { id: 'titulo', label: 'Título', desc: '2 fotos', price: 200 },
   { id: 'digital', label: 'Fotografía oficial', desc: 'Formato digital', price: 120 },
