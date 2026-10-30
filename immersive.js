@@ -147,9 +147,15 @@
     var gTick = false;
     function updateGallery() {
       gTick = false;
+
+      /* Primero se leen todas las medidas y después se escriben los estilos:
+         mezclar lecturas y escrituras obliga al navegador a recalcular la
+         página una vez por foto (lento en celular). */
       var max = Math.max(1, gallery.scrollWidth - gallery.clientWidth);
       var left = gallery.scrollLeft;
       var idx = activeIndex();
+      var rect = gallery.getBoundingClientRect();
+      var tileRects = reduceMotion ? null : tiles.map(function (t) { return t.getBoundingClientRect(); });
 
       countEl.textContent = idx + 1;
       barEl.style.setProperty('--p', Math.max(0.06, (idx + 1) / n).toFixed(3));
@@ -160,12 +166,11 @@
       gallery.style.setProperty('--fr', left < max - 8 ? '96px' : '0px');
 
       /* La foto más cercana al centro se ve un poco más grande y brillante */
-      if (!reduceMotion) {
-        var rect = gallery.getBoundingClientRect();
+      if (tileRects) {
         var mid = rect.left + rect.width / 2;
         var span = rect.width * 0.55;
         for (var i = 0; i < n; i++) {
-          var r = tiles[i].getBoundingClientRect();
+          var r = tileRects[i];
           var t = Math.min(1, Math.abs(r.left + r.width / 2 - mid) / span);
           tiles[i].style.scale = (1 - 0.06 * t).toFixed(3);
           tiles[i].style.filter = 'brightness(' + (1 - 0.1 * t).toFixed(3) + ')';

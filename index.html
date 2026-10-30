@@ -41,13 +41,13 @@
     content="Impresión fotográfica, cuadro, bastidor y fotos ID en Los Nogales, Juárez. Pide en línea por WhatsApp o correo.">
   <meta name="twitter:image" content="https://fotovistajz.com/assets/og-image.jpg">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Solo 2 fuentes en todo el sitio: Playpen Sans (títulos h1/h2/h3) y
        Source Serif 4 (todo lo demás: texto, botones, menú, etiquetas). -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@500..600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap"
-    rel="stylesheet">
+  <!-- Fuentes propias (ver @font-face en theme.css): se piden de inmediato -->
+  <link rel="preload" href="assets/fonts/playpen-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- La foto 16×20 del hero es lo más grande que se ve al abrir en celular: se pide primero -->
+  <link rel="preload" as="image" href="assets/fotos/hero-1-400.webp" imagesrcset="assets/fotos/hero-1-400.webp 400w, assets/fotos/hero-1.webp 600w" imagesizes="(max-width: 900px) 72vw, 360px" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="theme.css">
 
@@ -58,11 +58,28 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://fotovistajz.com/#fotovista",
     "name": "Fotovista JCCastillo",
-    "image": "https://fotovistajz.com/assets/logo.png",
+    "alternateName": "Fotovista",
+    "description": "Laboratorio fotográfico en Ciudad Juárez desde 1962: impresión y revelado de fotos, cuadros y bastidores, fotos para visa americana, pasaporte y credencial, esquelas y homenaje póstumo, restauración de fotos y pósters para fiestas.",
     "url": "https://fotovistajz.com/",
+    "logo": "https://fotovistajz.com/assets/logo.png",
+    "image": [
+      "https://fotovistajz.com/assets/fotos/lab-2.webp",
+      "https://fotovistajz.com/assets/fotos/lab-1.webp",
+      "https://fotovistajz.com/assets/fotos/lab-3.webp",
+      "https://fotovistajz.com/assets/og-image.jpg"
+    ],
     "telephone": "+52 656 550 8492",
+    "email": "jcc.fotovista@gmail.com",
     "priceRange": "$",
+    "currenciesAccepted": "MXN",
+    "paymentAccepted": "Mercado Pago",
+    "foundingDate": "1962",
+    "founder": {
+      "@type": "Person",
+      "name": "José Castillo"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "C. 21 de Marzo 4930, Los Nogales",
@@ -76,26 +93,99 @@
       "latitude": 31.7218404,
       "longitude": -106.4437917
     },
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Fotovista&query_place_id=ChIJgVFO0Zlf54YR9XI2x5h827Y",
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday"], "opens": "09:00", "closes": "19:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "09:00", "closes": "20:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "09:00", "closes": "22:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "20:00" }
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday"
+        ],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Thursday",
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "10:00",
+        "closes": "20:00"
+      }
     ],
+    "areaServed": {
+      "@type": "City",
+      "name": "Ciudad Juárez"
+    },
     "sameAs": [
       "https://www.facebook.com/profile.php?id=61593201084522"
     ],
-    "areaServed": { "@type": "City", "name": "Ciudad Juárez" },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Servicios de laboratorio fotográfico",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Impresión y revelado de fotos", "url": "https://fotovistajz.com/impresion-de-fotos.html" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cuadros y bastidores", "url": "https://fotovistajz.com/cuadros-y-bastidores.html" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fotos para visa americana, pasaporte y credencial", "url": "https://fotovistajz.com/fotos-para-pasaporte-y-credencial.html" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Esquelas y homenaje póstumo", "url": "https://fotovistajz.com/homenaje-postumo.html" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Restauración de fotos y negativos a digital", "url": "https://fotovistajz.com/restauracion-de-fotos.html" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pósters de bienvenida para fiestas", "url": "https://fotovistajz.com/posters-para-fiestas.html" } }
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Impresión y revelado de fotos",
+            "url": "https://fotovistajz.com/impresion-de-fotos.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Cuadros y bastidores",
+            "url": "https://fotovistajz.com/cuadros-y-bastidores.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Fotos para visa americana, pasaporte y credencial",
+            "url": "https://fotovistajz.com/fotos-para-pasaporte-y-credencial.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Esquelas y homenaje póstumo",
+            "url": "https://fotovistajz.com/homenaje-postumo.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Restauración de fotos y negativos a digital",
+            "url": "https://fotovistajz.com/restauracion-de-fotos.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Pósters de bienvenida para fiestas",
+            "url": "https://fotovistajz.com/posters-para-fiestas.html"
+          }
+        }
       ]
     }
   }
@@ -113,7 +203,7 @@
   <header>
     <div class="wrap">
       <div class="logo" id="siteLogo">
-        <img src="assets/logo.webp" alt="Fotovista JCCastillo" class="logo-img" width="2073" height="687">
+        <img src="assets/logo-480.webp" alt="Fotovista JCCastillo" class="logo-img" width="480" height="159">
         <span class="logo-tagline">Tu mejor impresión</span>
       </div>
       <nav id="nav">
@@ -149,15 +239,15 @@
            el bloque "PHOTO STACK" en script.js para la parte de arrastrar. -->
       <div class="photo-stack" id="photoStack">
         <div class="photo-card pc-1" style="--rot:-8deg;">
-          <img src="assets/fotos/hero-1.webp" alt="Trabajo de Fotovista, impresión 16×20" width="600" height="800">
+          <img src="assets/fotos/hero-1.webp" srcset="assets/fotos/hero-1-400.webp 400w, assets/fotos/hero-1.webp 600w" sizes="(max-width: 900px) 72vw, 360px" fetchpriority="high" alt="Trabajo de Fotovista, impresión 16×20" width="600" height="800">
           <span class="pc-tag">16×20</span>
         </div>
         <div class="photo-card pc-2" style="--rot:6deg;">
-          <img src="assets/fotos/hero-2.webp" alt="Trabajo de Fotovista, impresión 5×7" width="600" height="800">
+          <img src="assets/fotos/hero-2.webp" srcset="assets/fotos/hero-2-400.webp 400w, assets/fotos/hero-2.webp 600w" sizes="120px" alt="Trabajo de Fotovista, impresión 5×7" width="600" height="800">
           <span class="pc-tag">5×7</span>
         </div>
         <div class="photo-card pc-3" style="--rot:-4deg;">
-          <img src="assets/fotos/hero-3.webp" alt="Trabajo de Fotovista, impresión 4×6" width="600" height="800">
+          <img src="assets/fotos/hero-3.webp" srcset="assets/fotos/hero-3-400.webp 400w, assets/fotos/hero-3.webp 600w" sizes="100px" alt="Trabajo de Fotovista, impresión 4×6" width="600" height="800">
           <span class="pc-tag">4×6</span>
         </div>
         <span class="stack-note">Las tres impresiones, a escala entre sí.</span>
@@ -172,7 +262,7 @@
   <!-- ============ NOSOTROS ============ -->
   <section class="about site-section dark-section tone-light" id="nosotros">
     <div class="wrap about-grid">
-      <img loading="lazy" decoding="async" src="assets/fotos/srcastillo.webp" alt="José Castillo, fundador de Fotovista, trabajando en el laboratorio" width="1047" height="1503">
+      <img loading="lazy" decoding="async" src="assets/fotos/srcastillo.webp" srcset="assets/fotos/srcastillo-640.webp 640w, assets/fotos/srcastillo-800.webp 800w, assets/fotos/srcastillo.webp 1047w" sizes="(max-width: 900px) calc(100vw - 40px), 560px" alt="José Castillo, fundador de Fotovista, trabajando en el laboratorio" width="1047" height="1503" style="--ar: 1047 / 1503">
       <div>
         <span class="sec-num">Nosotros</span>
         <h2>Más de 60 años de experiencia fotográfica.</h2>
@@ -246,7 +336,7 @@
         </div>
         <a class="sec-more" href="posters-para-fiestas.html">Más sobre los pósters para fiestas</a>
       </div>
-      <img src="assets/fotos/lab-4.webp" alt="Póster de bienvenida para baby shower impreso en gran formato, sobre un atril dorado" width="1377" height="922" loading="lazy">
+      <img src="assets/fotos/lab-4.webp" srcset="assets/fotos/lab-4-800.webp 800w, assets/fotos/lab-4.webp 1377w" sizes="(max-width: 900px) calc(100vw - 40px), 560px" alt="Póster de bienvenida para baby shower impreso en gran formato, sobre un atril dorado" width="1377" height="922" loading="lazy" style="--ar: 1377 / 922">
     </div>
   </section>
 
@@ -292,8 +382,8 @@
        "photogWhatsappBtn". -->
   <section class="products site-section dark-section tone-light" id="para-fotografos">
     <div class="wrap about-grid">
-      <img loading="lazy" decoding="async" src="assets/fotos/extra/extra-1.webp" alt="Impresora de gran formato en el laboratorio Fotovista"
-        width="978" height="722">
+      <img loading="lazy" decoding="async" src="assets/fotos/extra/extra-1.webp" srcset="assets/fotos/extra/extra-1-640.webp 640w, assets/fotos/extra/extra-1.webp 978w" sizes="(max-width: 900px) calc(100vw - 40px), 560px" alt="Impresora de gran formato en el laboratorio Fotovista"
+        width="978" height="722" style="--ar: 978 / 722">
       <div>
         <span class="sec-num">Para fotógrafos</span>
         <h2>¿Eres fotógrafo? Imprime tu trabajo con nosotros.</h2>
@@ -322,7 +412,7 @@
        armado en script.js, busca "homenajeWhatsappBtn". -->
   <section class="products site-section dark-section" id="homenaje">
     <div class="wrap about-grid">
-      <img loading="lazy" decoding="async" src="assets/fotos/postuma 2.webp" alt="Ejemplo de homenaje póstumo enmarcado" width="900" height="1200">
+      <img loading="lazy" decoding="async" src="assets/fotos/postuma 2.webp" srcset="assets/fotos/postuma%202-640.webp 640w, assets/fotos/postuma%202-800.webp 800w, assets/fotos/postuma%202.webp 1066w" sizes="(max-width: 900px) calc(100vw - 40px), 560px" alt="Ejemplo de homenaje póstumo enmarcado" width="1066" height="1600" style="--ar: 1066 / 1600">
       <div>
         <span class="sec-num">Homenaje póstumo</span>
         <h2>Te acompañamos a honrar su memoria.</h2>
@@ -492,8 +582,8 @@
   <footer class="site-section">
     <div class="wrap footer-grid">
       <div class="footer-brand">
-        <div class="logo"><img loading="lazy" decoding="async" src="assets/logo.webp" alt="Fotovista JCCastillo" class="logo-img" width="2073"
-            height="687"></div>
+        <div class="logo"><img loading="lazy" decoding="async" src="assets/logo-480.webp" alt="Fotovista JCCastillo" class="logo-img" width="480"
+            height="159"></div>
         <!-- Si más adelante tienen Instagram o TikTok, agrega otro <a class="social-link">
              igual al de abajo, con su propio emoji o SVG. -->
         <div class="social-row">
@@ -837,7 +927,9 @@
     </main>
   </div>
 
-  <script src="script.js"></script>
+  <!-- defer: se ejecuta cuando la página ya está dibujada (antes frenaba el primer
+       dibujo ~2 s en celular). Va antes que immersive.js y ese orden se respeta. -->
+  <script src="script.js" defer></script>
   <script src="immersive.js" defer></script>
 
   <!-- Botón flotante de WhatsApp: visible en toda la página para preguntas rápidas
