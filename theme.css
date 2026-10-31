@@ -907,6 +907,7 @@ body.immersive #contacto {
   color: var(--tinta);
 }
 
+body.immersive #navidad,
 body.immersive #servicios,
 body.immersive #foto-cv,
 body.immersive #galeria,
@@ -1033,6 +1034,111 @@ body.immersive .stat span {
     order: -1;
     max-height: 64vh;
   }
+}
+
+/* ---------- Sesión de fotos navideña (promoción de temporada) ---------- */
+
+body.immersive #navidad { padding: var(--seccion) 0; }
+body.immersive #navidad > .wrap { max-width: var(--ancho); }
+
+.navidad-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: var(--s-6) clamp(32px, 6vw, 96px);
+  align-items: end;
+  margin-bottom: var(--s-12);
+}
+
+body.immersive .navidad-head h2 { font-size: var(--t-h2); margin: 0; }
+
+.navidad-head p {
+  font-size: var(--t-18);
+  color: var(--tinta-2);
+  max-width: 30em;
+}
+
+.paquetes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s-4);
+}
+
+.paquete {
+  display: flex;
+  flex-direction: column;
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-top: 6px solid var(--familia);
+  border-radius: var(--r-panel);
+  padding: var(--s-6) var(--s-6) var(--s-6);
+}
+
+.paquete[data-familia="amarillo"] { --familia: var(--amarillo); }
+.paquete[data-familia="rosa"] { --familia: var(--rosa); }
+.paquete[data-familia="azul"] { --familia: var(--azul); }
+.paquete[data-familia="ambar"] { --familia: var(--ambar); }
+
+body.immersive .paquete h3 {
+  font-family: var(--font-display);
+  font-size: var(--t-21);
+  font-weight: 500;
+  margin-bottom: var(--s-2);
+}
+
+.paquete-precio {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 3.6vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta);
+  margin-bottom: var(--s-6);
+}
+
+.paquete-incluye {
+  list-style: none;
+  margin: 0 0 var(--s-6);
+  padding: 0;
+  border-top: 1px solid var(--linea);
+}
+
+.paquete-incluye li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--linea);
+  font-size: var(--t-16);
+  color: var(--tinta-2);
+}
+
+.paquete .btn {
+  margin-top: auto;
+  text-align: center;
+}
+
+.paquete .btn:hover { border-color: var(--accion); color: var(--accion); }
+
+.paquetes-nota {
+  margin-top: var(--s-6);
+  font-size: var(--t-16);
+  color: var(--tinta-2);
+}
+
+/* Pie del hero con dos enlaces */
+.hero-foot-links { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+
+@media (max-width: 1100px) {
+  .paquetes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .navidad-head { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .paquetes { grid-template-columns: 1fr; }
 }
 
 /* ---------- Servicios: lista con la muestra de color de cada familia ---------- */
